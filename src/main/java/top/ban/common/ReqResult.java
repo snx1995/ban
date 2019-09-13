@@ -1,24 +1,36 @@
 package top.ban.common;
 
 public class ReqResult {
-    private int status;
+    private int code;
     private String msg;
     private Object data;
-    private String success;
-    private String error;
 
-    /**
-     * @return int return the status
-     */
-    public int getStatus() {
-        return status;
+    public ReqResult succeeded(Object data) {
+        this.code = ResStatus.SUCCEEDED.getCode();
+        this.msg = ResStatus.SUCCEEDED.getMsg();
+        this.data = data;
+        return this;
+    }
+
+    public ReqResult failed(Object data) {
+        this.code = ResStatus.FAILED.getCode();
+        this.msg = ResStatus.FAILED.getMsg();
+        this.data = data;
+        return this;
     }
 
     /**
-     * @param status the status to set
+     * @return int return the code
      */
-    public void setStatus(int status) {
-        this.status = status;
+    public int getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(int code) {
+        this.code = code;
     }
 
     /**
@@ -48,33 +60,4 @@ public class ReqResult {
     public void setData(Object data) {
         this.data = data;
     }
-
-    /**
-     * @return String return the success
-     */
-    public String getSuccess() {
-        return success;
-    }
-
-    /**
-     * @param success the success to set
-     */
-    public void setSuccess(String success) {
-        this.success = success;
-    }
-
-    /**
-     * @return String return the error
-     */
-    public String getError() {
-        return error;
-    }
-
-    /**
-     * @param error the error to set
-     */
-    public void setError(String error) {
-        this.error = error;
-    }
-
 }

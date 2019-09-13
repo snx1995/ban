@@ -20,12 +20,7 @@
             <version>2.1.8.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-            <version>2.1.8.RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
@@ -51,7 +46,7 @@
             <version>3.5.2</version>
         </dependency>
 
-        <!-- Spring boot loging starter -->
+        <!-- Spring boot logging starter -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -164,10 +159,6 @@
                 <directory>src/main/resources</directory>
             </testResource>
         </testResources>
-
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-        <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
 
         <plugins>
             <plugin>
