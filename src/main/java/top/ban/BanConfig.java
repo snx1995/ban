@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import top.ban.platform.handler.BanArgumentsHandler;
 import top.ban.platform.handler.BanReturnValueHandler;
+import top.ban.platform.interceptor.AuthorityInterceptor;
 import top.ban.platform.interceptor.ResInterceptor;
 
 import java.util.List;
@@ -17,11 +18,13 @@ public class BanConfig implements WebMvcConfigurer {
     private ResInterceptor resInterceptor;
     private BanReturnValueHandler returnValueHandler;
     private BanArgumentsHandler argumentsHandler;
+    private AuthorityInterceptor authorityInterceptor;
 
-    public BanConfig(ResInterceptor resInterceptor, BanReturnValueHandler returnValueHandler, BanArgumentsHandler argumentsHandler) {
+    public BanConfig(ResInterceptor resInterceptor, BanReturnValueHandler returnValueHandler, BanArgumentsHandler argumentsHandler, AuthorityInterceptor authorityInterceptor) {
         this.resInterceptor = resInterceptor;
         this.returnValueHandler = returnValueHandler;
         this.argumentsHandler = argumentsHandler;
+        this.authorityInterceptor = authorityInterceptor;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class BanConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(this.authorityInterceptor);
         registry.addInterceptor(this.resInterceptor);
     }
 }
