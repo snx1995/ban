@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.ban.business.dao.TestDao;
 import top.ban.common.AuthorityLevel;
 import top.ban.common.annotation.AuthLV;
 import top.ban.common.annotation.Required;
 import top.ban.common.entity.user.User;
+import top.ban.common.entity.vo.TestVO;
 import top.ban.common.exception.InvalidParamException;
 import top.ban.platform.authority.UserToken;
 
@@ -17,6 +19,11 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/learn")
 class FirstController {
+    private TestDao testDao;
+
+    public FirstController(TestDao testDao) {
+        this.testDao = testDao;
+    }
 
     @AuthLV(AuthorityLevel.ADMIN)
     @GetMapping("/{name}")
@@ -30,6 +37,7 @@ class FirstController {
 
     @GetMapping("/test/{val}")
     public String test(@PathVariable String val) {
+        TestVO test = testDao.selectById();
         return val;
     }
 
