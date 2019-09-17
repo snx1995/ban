@@ -15,9 +15,9 @@ import top.ban.platform.authority.UserToken;
 
 import java.util.HashMap;
 
-@AuthLV(AuthorityLevel.SUPER_ADMIN)
 @RestController
 @RequestMapping("/learn")
+@AuthLV(AuthorityLevel.SUPER_ADMIN)
 class FirstController {
     private TestDao testDao;
 
@@ -35,10 +35,10 @@ class FirstController {
         return result;
     }
 
-    @GetMapping("/test/{val}")
-    public String test(@PathVariable String val) {
-        TestVO test = testDao.selectById();
-        return val;
+    @GetMapping("/test/select/{id}")
+    public TestVO test(@PathVariable Integer id) {
+        TestVO test = testDao.selectById(id);
+        return test;
     }
 
     @GetMapping("/test/token")

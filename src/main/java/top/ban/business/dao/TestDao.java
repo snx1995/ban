@@ -1,9 +1,9 @@
 package top.ban.business.dao;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 import top.ban.common.entity.vo.TestVO;
 
-@Mapper
+@Repository
 public interface TestDao {
-    TestVO selectById();
+    TestVO selectById(Integer id);
 }

@@ -5,6 +5,6 @@
 <mapper namespace="top.ban.business.dao.TestDao">
 
     <select id="selectById" parameterType="Integer" resultType="top.ban.common.entity.vo.TestVO">
-        SELECT * FROM user WHERE id = #{id}
+        SELECT * FROM test where id = #{id}
     </select>
 </mapper>

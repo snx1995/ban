@@ -1,7 +1,7 @@
 package top.ban;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,7 +13,9 @@ import top.ban.platform.interceptor.ResInterceptor;
 
 import java.util.List;
 
+
 @Configuration
+@PropertySource("classpath:application.properties")
 public class BanConfig implements WebMvcConfigurer {
     private ResInterceptor resInterceptor;
     private BanReturnValueHandler returnValueHandler;
