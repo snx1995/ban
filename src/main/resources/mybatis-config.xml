@@ -7,4 +7,8 @@
     <typeAliases>
         <package name="top.ban.common.entity" />
     </typeAliases>
+
+    <typeHandlers>
+        <typeHandler handler="top.ban.platform.handler.type.AuthorityLevelTypeHandler" javaType="top.ban.common.AuthorityLevel" />
+    </typeHandlers>
 </configuration>

@@ -8,10 +8,10 @@ import top.ban.business.dao.TestDao;
 import top.ban.common.AuthorityLevel;
 import top.ban.common.annotation.AuthLV;
 import top.ban.common.annotation.Required;
-import top.ban.common.entity.user.User;
 import top.ban.common.entity.vo.TestVO;
 import top.ban.common.exception.InvalidParamException;
 import top.ban.platform.authority.UserToken;
+import top.ban.platform.authority.UserTokenService;
 
 import java.util.HashMap;
 
@@ -20,9 +20,11 @@ import java.util.HashMap;
 @AuthLV(AuthorityLevel.SUPER_ADMIN)
 class FirstController {
     private TestDao testDao;
+    private UserTokenService tokenService;
 
-    public FirstController(TestDao testDao) {
+    public FirstController(TestDao testDao, UserTokenService tokenService) {
         this.testDao = testDao;
+        this.tokenService = tokenService;
     }
 
     @AuthLV(AuthorityLevel.ADMIN)
@@ -41,27 +43,8 @@ class FirstController {
         return test;
     }
 
-    @GetMapping("/test/token")
-    public HashMap<String, Object> testToken() {
-        UserToken token = new UserToken("adwrfsxcxasdsd-231-asdd", AuthorityLevel.SUPER_ADMIN, 0);
-        String expiredToken = new UserToken("banyq", AuthorityLevel.SUPER_ADMIN, 0, System.currentTimeMillis()).toString();
-        String tokenStr = token.toString();
-
-        HashMap<String, Object> result = new HashMap<>();
-        try {
-            UserToken decToken = new UserToken(tokenStr);
-            result.put("user", decToken);
-        } catch (UserToken.UserTokenEncodeException | UserToken.UserTokenVerifyException | UserToken.UserTokenExpireException e) {
-            result.put("error", e.getMessage());
-        }
-
-        try {
-            UserToken decToken = new UserToken(expiredToken);
-            result.put("user", decToken);
-        } catch (UserToken.UserTokenEncodeException | UserToken.UserTokenVerifyException | UserToken.UserTokenExpireException e) {
-            result.put("error2", e.getMessage());
-        }
-
-        return result;
+    @GetMapping("/token")
+    public UserToken testToken() {
+        return tokenService.encode("banyq", AuthorityLevel.SUPER_ADMIN, 0);
     }
 }

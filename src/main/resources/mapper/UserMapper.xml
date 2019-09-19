@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.ban.business.dao.UserMapper">
+    <resultMap id="UserVOMap" type="UserVO">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="auth_lv" property="authorityLevel" javaType="top.ban.common.AuthorityLevel"/>
+        <result column="token_version" property="version" />
+    </resultMap>
+
+    <select id="selectIdPassword" parameterType="LoginParam" resultMap="UserVOMap">
+        select * from user where id = #{account} and password = #{password}
+    </select>
+
+    <insert id="insertUser" parameterType="RegisterParam" useGeneratedKeys="true" keyProperty="id">
+        insert into user (name, password) values
+        (#{name}, #{password})
+    </insert>
+</mapper>

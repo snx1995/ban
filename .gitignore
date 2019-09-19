@@ -6,3 +6,4 @@
 target
 **/application.properties
 **/system.properties
+**/.DS_Store

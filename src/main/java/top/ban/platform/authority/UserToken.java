@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+
 import top.ban.common.AuthorityLevel;
 import top.ban.common.util.DateUtil;
 import top.ban.platform.variable.SysConstVar;
@@ -21,6 +22,7 @@ public class UserToken {
     private AuthorityLevel authLevel;
     private Long expireTime;
     private Integer version;
+    private String tokenPasswd;
 
     public String getUserId() {
         return userId;
@@ -40,15 +42,16 @@ public class UserToken {
 
     private String encodedStr;
 
-    public UserToken(String userId, AuthorityLevel authLevel, int version) throws UserTokenEncodeException {
-        this(userId, authLevel, version, System.currentTimeMillis() + MS_7_DAYS);
+    public UserToken(String userId, AuthorityLevel authLevel, int version, String tokenPasswd) throws UserTokenEncodeException {
+        this(userId, authLevel, version, System.currentTimeMillis() + MS_7_DAYS, tokenPasswd);
     }
 
-    public UserToken(String userId, AuthorityLevel authLevel, int version, Long expireTime) throws UserTokenEncodeException {
+    public UserToken(String userId, AuthorityLevel authLevel, int version, long expireTime, String tokenPasswd) throws UserTokenEncodeException {
         this.userId = userId;
         this.authLevel = authLevel;
         this.expireTime = expireTime;
         this.version = version;
+        this.tokenPasswd = tokenPasswd;
         this.encodedStr = this.encode();
     }
 
@@ -63,11 +66,11 @@ public class UserToken {
         return  base64Str + "." + md5Encode(base64Str);
     }
 
-    private static String md5Encode(String originStr) throws UserTokenEncodeException {
+    private String md5Encode(String originStr) throws UserTokenEncodeException {
         String md5Str;
         try {
             MessageDigest ds = MessageDigest.getInstance("MD5");
-            ds.update((originStr + SysConstVar.TOKEN_PASSWORD).getBytes(StandardCharsets.UTF_8));
+            ds.update((originStr + "__" + this.tokenPasswd).getBytes(StandardCharsets.UTF_8));
             byte[] result = ds.digest();
             StringBuilder builder = new StringBuilder();
             for (byte b : result) {
