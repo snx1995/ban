@@ -11,21 +11,24 @@ import top.ban.platform.component.SysEventBus;
 import top.ban.platform.handler.BanArgumentsHandler;
 import top.ban.platform.handler.BanReturnValueHandler;
 import top.ban.platform.interceptor.AuthorityInterceptor;
+import top.ban.platform.interceptor.ReqInterceptor;
 import top.ban.platform.interceptor.ResInterceptor;
 
 import java.util.List;
 @Configuration
 public class BanConfig implements WebMvcConfigurer {
+    private ReqInterceptor reqInterceptor;
     private ResInterceptor resInterceptor;
     private BanReturnValueHandler returnValueHandler;
     private BanArgumentsHandler argumentsHandler;
     private AuthorityInterceptor authorityInterceptor;
 
-    public BanConfig(ResInterceptor resInterceptor, BanReturnValueHandler returnValueHandler, BanArgumentsHandler argumentsHandler, AuthorityInterceptor authorityInterceptor) {
+    public BanConfig(ResInterceptor resInterceptor, BanReturnValueHandler returnValueHandler, BanArgumentsHandler argumentsHandler, AuthorityInterceptor authorityInterceptor, ReqInterceptor reqInterceptor) {
         this.resInterceptor = resInterceptor;
         this.returnValueHandler = returnValueHandler;
         this.argumentsHandler = argumentsHandler;
         this.authorityInterceptor = authorityInterceptor;
+        this.reqInterceptor = reqInterceptor;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class BanConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(this.reqInterceptor);
         registry.addInterceptor(this.authorityInterceptor);
         registry.addInterceptor(this.resInterceptor);
     }
@@ -47,10 +51,5 @@ public class BanConfig implements WebMvcConfigurer {
     @Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
-    }
-
-    @Bean
-    public SysEventBus sysEventBus() {
-        return new SysEventBus();
     }
 }

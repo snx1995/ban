@@ -19,7 +19,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (o instanceof ReqErrorResult) return o;
+        if (o instanceof ReqResult) return o;
         return new ReqResult().succeeded(o);
     }
 }

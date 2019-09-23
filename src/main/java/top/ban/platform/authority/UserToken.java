@@ -54,8 +54,9 @@ public class UserToken {
         this.encodedStr = this.encode();
     }
 
-    public UserToken(String encodedStr) throws UserTokenExpireException, UserTokenVerifyException {
+    public UserToken(String encodedStr, String tokenPasswd) throws UserTokenExpireException, UserTokenVerifyException {
         this.encodedStr = encodedStr;
+        this.tokenPasswd = tokenPasswd;
         this.decode(encodedStr);
     }
 

@@ -25,6 +25,6 @@ public class UserTokenServiceImpl implements UserTokenService {
 
     @Override
     public UserToken decode(String token) throws UserToken.UserTokenVerifyException, UserToken.UserTokenExpireException {
-        return new UserToken(token);
+        return new UserToken(token, this.tokenPasswd);
     }
 }
