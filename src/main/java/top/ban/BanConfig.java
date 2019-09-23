@@ -1,10 +1,13 @@
 package top.ban;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import top.ban.platform.component.SysEventBus;
 import top.ban.platform.handler.BanArgumentsHandler;
 import top.ban.platform.handler.BanReturnValueHandler;
 import top.ban.platform.interceptor.AuthorityInterceptor;
@@ -39,5 +42,15 @@ public class BanConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(this.authorityInterceptor);
         registry.addInterceptor(this.resInterceptor);
+    }
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+
+    @Bean
+    public SysEventBus sysEventBus() {
+        return new SysEventBus();
     }
 }
