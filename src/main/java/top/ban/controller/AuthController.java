@@ -9,19 +9,16 @@ import top.ban.common.entity.vo.user.LoginParam;
 import top.ban.common.entity.vo.user.RegisterParam;
 import top.ban.common.entity.vo.user.UserVO;
 import top.ban.platform.authority.UserTokenService;
-import top.ban.platform.component.SysEventBus;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
     private UserTokenService tokenService;
     private UserMapper userMapper;
-    private SysEventBus eventBus;
 
-    public AuthController(UserTokenService tokenService, UserMapper userMapper, SysEventBus eventBus) {
+    public AuthController(UserTokenService tokenService, UserMapper userMapper) {
         this.tokenService = tokenService;
         this.userMapper = userMapper;
-        this.eventBus = eventBus;
     }
 
     @PostMapping("/login")

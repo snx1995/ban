@@ -7,7 +7,6 @@ import java.util.Base64;
 
 import top.ban.common.AuthorityLevel;
 import top.ban.common.util.DateUtil;
-import top.ban.platform.variable.SysConstVar;
 
 import java.util.Date;
 
@@ -111,18 +110,24 @@ public class UserToken {
     }
 
     public static class UserTokenVerifyException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
         public UserTokenVerifyException() {
             super(VERIFY_ERROR_MSG);
         }
     }
 
     public static class UserTokenExpireException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
         public UserTokenExpireException(Long expireDate) {
             super(EXPIRE_ERROR_MSG + DateUtil.format(new Date(expireDate), "yyyy-MM-dd HH:mm:ss"));
         }
     }
 
     public static class UserTokenEncodeException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
         public UserTokenEncodeException() {
             super(ENCODE_ERROR_MSG);
         }

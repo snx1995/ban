@@ -4,7 +4,6 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
-import org.springframework.stereotype.Component;
 import top.ban.common.AuthorityLevel;
 
 import java.sql.CallableStatement;

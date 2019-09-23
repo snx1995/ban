@@ -2,7 +2,6 @@ package top.ban.platform.component;
 
 import top.ban.platform.component.event.SysEvent;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class SysEventBus {
