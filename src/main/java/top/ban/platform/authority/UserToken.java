@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import top.ban.common.AuthorityLevel;
+import top.ban.common.exception.BaseException;
 import top.ban.common.util.DateUtil;
 
 import java.util.Date;
@@ -110,7 +111,7 @@ public class UserToken {
         return this.encodedStr;
     }
 
-    public static class UserTokenVerifyException extends RuntimeException {
+    public static class UserTokenVerifyException extends BaseException {
         private static final long serialVersionUID = 1L;
 
         public UserTokenVerifyException() {
@@ -118,7 +119,7 @@ public class UserToken {
         }
     }
 
-    public static class UserTokenExpireException extends RuntimeException {
+    public static class UserTokenExpireException extends BaseException {
         private static final long serialVersionUID = 1L;
 
         public UserTokenExpireException(Long expireDate) {
@@ -126,7 +127,7 @@ public class UserToken {
         }
     }
 
-    public static class UserTokenEncodeException extends RuntimeException {
+    public static class UserTokenEncodeException extends BaseException {
         private static final long serialVersionUID = 1L;
 
         public UserTokenEncodeException() {

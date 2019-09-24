@@ -17,6 +17,6 @@ public class TestController {
     @GetMapping("/testAuthLv")
     @AuthLV(AuthorityLevel.ADMIN)
     public Object test() {
-        return new HashMap<String, Object>();
+        return "new ArrayList<Integer>(3)";
     }
 }

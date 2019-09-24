@@ -15,6 +15,7 @@ import top.ban.platform.interceptor.ReqInterceptor;
 import top.ban.platform.interceptor.ResInterceptor;
 
 import java.util.List;
+
 @Configuration
 public class BanConfig implements WebMvcConfigurer {
     private ReqInterceptor reqInterceptor;

@@ -38,50 +38,12 @@ public class WebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
-        String msg = "####### msg: " + message;
-        try {
-            TestData data = JSON.parse(message, TestData.class);
 
-            Map<String, Object> data2 = new HashMap<>();
-            data2.put("name", "banyq");
-            data2.put("age", 18);
-            data2.put("data", new int[]{1, 2, 3});
-            sendMessage(data2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    private void sendMessage(String message) throws Exception {
-        if (this.session.isOpen()) {
-            this.session.getBasicRemote().sendText(message);
-        }
-    }
-
-    private void sendMessage(Object message) throws Exception {
+    public void sendMessage(Object message) throws Exception {
         if (this.session.isOpen()) {
             this.session.getBasicRemote().sendText(JSON.stringify(message));
         }
-    }
-}
-
-class TestData {
-    private String name;
-    private String data;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 }

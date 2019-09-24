@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import top.ban.common.ReqErrorResult;
-import top.ban.common.exception.AuthorizationException;
-import top.ban.common.exception.InvalidParamException;
+import top.ban.common.exception.BaseException;
 
 @RestController
 @ControllerAdvice
@@ -16,13 +15,8 @@ public class CenterExceptionHandler {
         return new ReqErrorResult(ex.getMessage());
     }
 
-    @ExceptionHandler(InvalidParamException.class)
-    public ReqErrorResult handleInvalidParamException(InvalidParamException ex) {
-        return new ReqErrorResult(ex.getMessage());
-    }
-
-    @ExceptionHandler(AuthorizationException.class)
-    public ReqErrorResult handleAuthorizationException(AuthorizationException ex) {
+    @ExceptionHandler(BaseException.class)
+    public ReqErrorResult handleAuthorizationException(BaseException ex) {
         return new ReqErrorResult(ex);
     }
 }

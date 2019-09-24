@@ -1,22 +1,40 @@
 package top.ban.platform.handler;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
+import top.ban.common.ReqResult;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 @Component
-public class BanReturnValueHandler implements HandlerMethodReturnValueHandler {
+public class BanReturnValueHandler extends RequestResponseBodyMethodProcessor {
+    public BanReturnValueHandler(List<HttpMessageConverter<?>> converters) {
+        super(converters);
+    }
 
     @Override
-    public boolean supportsReturnType(MethodParameter methodParameter) {
+    public boolean supportsReturnType(MethodParameter returnType) {
         return true;
     }
 
     @Override
-    public void handleReturnValue(Object o, MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest) throws Exception {
-        modelAndViewContainer.setRequestHandled(true);
-        System.out.println();
+    public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
+        if (returnValue instanceof ResponseEntity) {
+            ResponseEntity entity = (ResponseEntity) returnValue;
+            returnValue = entity.getBody();
+        } else if (!(returnValue instanceof ReqResult)) {
+            returnValue = new ReqResult().succeeded(returnValue);
+        }
+        super.handleReturnValue(returnValue, returnType, mavContainer, webRequest);
     }
 }
