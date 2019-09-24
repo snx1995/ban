@@ -7,14 +7,12 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 import top.ban.common.ReqResult;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class BanReturnValueHandler extends RequestResponseBodyMethodProcessor {

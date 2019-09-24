@@ -1,9 +1,9 @@
 package top.ban.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import top.ban.business.dao.TestDao;
 import top.ban.common.AuthorityLevel;
 import top.ban.common.annotation.AuthLV;
@@ -15,7 +15,7 @@ import top.ban.platform.authority.UserTokenService;
 
 import java.util.HashMap;
 
-@RestController
+@Controller
 @RequestMapping("/learn")
 @AuthLV(AuthorityLevel.SUPER_ADMIN)
 class FirstController {

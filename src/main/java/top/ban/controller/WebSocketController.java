@@ -1,6 +1,6 @@
 package top.ban.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import top.ban.common.util.JSON;
 
 import javax.websocket.OnClose;
@@ -9,11 +9,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@RestController
+@Controller
 @ServerEndpoint("/socket/{userId}")
 public class WebSocketController {
     private static volatile int onlineCount = 0;
