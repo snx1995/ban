@@ -7,14 +7,14 @@ public class UserVO {
     private String name;
     private String token;
     private Integer version;
-    private AuthorityLevel authorityLevel;
+    private AuthorityLevel authLv;
 
-    public AuthorityLevel getAuthorityLevel() {
-        return authorityLevel;
+    public AuthorityLevel getAuthLv() {
+        return authLv;
     }
 
-    public void setAuthorityLevel(AuthorityLevel authorityLevel) {
-        this.authorityLevel = authorityLevel;
+    public void setAuthLv(AuthorityLevel authLv) {
+        this.authLv = authLv;
     }
 
     public String getId() {

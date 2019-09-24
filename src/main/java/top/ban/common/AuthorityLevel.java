@@ -10,7 +10,7 @@ public enum AuthorityLevel {
     }
 
     public boolean higherThan(AuthorityLevel another) {
-        return this.lv <= another.lv;
+        return another.lv > this.lv;
     }
 
     public int getLv() {

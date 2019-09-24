@@ -6,12 +6,12 @@
     <resultMap id="UserVOMap" type="UserVO">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="auth_lv" property="authorityLevel" javaType="top.ban.common.AuthorityLevel"/>
+        <result column="auth_lv" property="authLv"/>
         <result column="token_version" property="version" />
     </resultMap>
 
     <select id="selectIdPassword" parameterType="LoginParam" resultMap="UserVOMap">
-        select * from user where id = #{account} and password = #{password}
+        select * from user where (id = #{account} or name = #{account}) and password = #{password}
     </select>
 
     <insert id="insertUser" parameterType="RegisterParam" useGeneratedKeys="true" keyProperty="id">

@@ -24,27 +24,27 @@ public class AuthController {
 
     @PostMapping("/login")
     public UserVO login(@RequestBody LoginParam param) {
-        UserVO user = new UserVO();
-        if ("banyq".equals(param.getAccount())) {
-            user.setAuthorityLevel(AuthorityLevel.SUPER_ADMIN);
-            user.setToken(tokenService.encode("banyq", AuthorityLevel.SUPER_ADMIN, 0).toString());
-            user.setId("banyq");
-            user.setName("banyq");
-            user.setVersion(0);
-        } else if ("admin".equals(param.getAccount())) {
-            user.setAuthorityLevel(AuthorityLevel.ADMIN);
-            user.setToken(tokenService.encode("admin", AuthorityLevel.ADMIN, 0).toString());
-            user.setId("admin");
-            user.setName("admin");
-            user.setVersion(0);
-        } else if ("user".equals(param.getAccount())) {
-            user.setAuthorityLevel(AuthorityLevel.USER);
-            user.setToken(tokenService.encode("user", AuthorityLevel.USER, 0).toString());
-            user.setId("user");
-            user.setName("user");
-            user.setVersion(0);
-        }
-        return user;
+//        UserVO user = new UserVO();
+//        if ("banyq".equals(param.getAccount())) {
+//            user.setAuthorityLevel(AuthorityLevel.SUPER_ADMIN);
+//            user.setToken(tokenService.encode("banyq", AuthorityLevel.SUPER_ADMIN, 0).toString());
+//            user.setId("banyq");
+//            user.setName("banyq");
+//            user.setVersion(0);
+//        } else if ("admin".equals(param.getAccount())) {
+//            user.setAuthorityLevel(AuthorityLevel.ADMIN);
+//            user.setToken(tokenService.encode("admin", AuthorityLevel.ADMIN, 0).toString());
+//            user.setId("admin");
+//            user.setName("admin");
+//            user.setVersion(0);
+//        } else if ("user".equals(param.getAccount())) {
+//            user.setAuthorityLevel(AuthorityLevel.USER);
+//            user.setToken(tokenService.encode("user", AuthorityLevel.USER, 0).toString());
+//            user.setId("user");
+//            user.setName("user");
+//            user.setVersion(0);
+//        }
+        return userMapper.selectIdPassword(param);
     }
 
     @PostMapping("/register")

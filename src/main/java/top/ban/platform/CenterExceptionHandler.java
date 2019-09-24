@@ -10,10 +10,10 @@ import top.ban.common.exception.BaseException;
 @RestController
 @ControllerAdvice
 public class CenterExceptionHandler {
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ReqErrorResult handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
-        return new ReqErrorResult(ex.getMessage());
-    }
+//    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+//    public ReqErrorResult handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
+//        return new ReqErrorResult(ex.getMessage());
+//    }
 
     @ExceptionHandler(BaseException.class)
     public ReqErrorResult handleAuthorizationException(BaseException ex) {

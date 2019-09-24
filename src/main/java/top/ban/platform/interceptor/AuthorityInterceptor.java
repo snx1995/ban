@@ -27,8 +27,8 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
             if (token == null && (classLv != null || methodLv != null)) throw new AuthorizationException();
             else if (token != null) {
                 AuthorityLevel userLv = token.getAuthLevel();
-                if (classLv != null && !userLv.higherThan(classLv.value())) throw new AuthorizationException();
-                if (methodLv != null && !userLv.higherThan(methodLv.value())) throw new AuthorizationException();
+                if (classLv != null && userLv.higherThan(classLv.value())) throw new AuthorizationException();
+                if (methodLv != null && userLv.higherThan(methodLv.value())) throw new AuthorizationException();
             }
             return true;
         }

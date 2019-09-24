@@ -96,6 +96,7 @@ public class UserToken {
         String originStr = new String(Base64.getDecoder().decode(base64Str));
         try {
             String[] items = originStr.split(",");
+            // TODO 获取最新version，判断token是否失效
             this.version = Integer.parseInt(items[0]);
             this.userId = items[1];
             this.authLevel = AuthorityLevel.getAuthorityLevel(Integer.parseInt(items[2]));

@@ -22,36 +22,36 @@ public class AuthorityLevelTypeHandler extends BaseTypeHandler<AuthorityLevel> {
 
     @Override
     public AuthorityLevel getResult(ResultSet rs, String columnName) throws SQLException {
-        return super.getResult(rs, columnName);
+        return AuthorityLevel.getAuthorityLevel(rs.getInt(columnName));
     }
 
     @Override
     public AuthorityLevel getResult(ResultSet rs, int columnIndex) throws SQLException {
-        return super.getResult(rs, columnIndex);
+        return AuthorityLevel.getAuthorityLevel(rs.getInt(columnIndex));
     }
 
     @Override
     public AuthorityLevel getResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return super.getResult(cs, columnIndex);
+        return AuthorityLevel.getAuthorityLevel(cs.getInt(columnIndex));
     }
 
     @Override
     public void setNonNullParameter(PreparedStatement preparedStatement, int i, AuthorityLevel authorityLevel, JdbcType jdbcType) throws SQLException {
-        preparedStatement.setString(i, authorityLevel.toString());
+        preparedStatement.setInt(i, authorityLevel.getLv());
     }
 
     @Override
     public AuthorityLevel getNullableResult(ResultSet resultSet, String s) throws SQLException {
-        return null;
+        return AuthorityLevel.getAuthorityLevel(resultSet.getInt(s));
     }
 
     @Override
     public AuthorityLevel getNullableResult(ResultSet resultSet, int i) throws SQLException {
-        return null;
+        return AuthorityLevel.getAuthorityLevel(resultSet.getInt(i));
     }
 
     @Override
     public AuthorityLevel getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
-        return null;
+        return AuthorityLevel.getAuthorityLevel(callableStatement.getInt(i));
     }
 }
