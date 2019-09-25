@@ -1,11 +1,11 @@
 package top.ban.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.ban.business.dao.UserMapper;
-import top.ban.common.AuthorityLevel;
 import top.ban.common.entity.vo.user.LoginParam;
 import top.ban.common.entity.vo.user.RegisterParam;
 import top.ban.common.entity.vo.user.UserVO;
@@ -47,9 +47,15 @@ public class AuthController {
         return userMapper.selectIdPassword(param);
     }
 
+    @Transactional
     @PostMapping("/register")
     public RegisterParam register(@RequestBody RegisterParam param) {
         int count = userMapper.insertUser(param);
         return param;
+    }
+
+    @PostMapping("/test")
+    public Object test(@RequestBody UserVO user) {
+        return user;
     }
 }

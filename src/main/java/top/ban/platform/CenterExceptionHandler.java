@@ -1,6 +1,6 @@
 package top.ban.platform;
 
-import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +14,16 @@ public class CenterExceptionHandler {
 //    public ReqErrorResult handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
 //        return new ReqErrorResult(ex.getMessage());
 //    }
+
+    @ExceptionHandler(Exception.class)
+    public ReqErrorResult handleException(Exception ex) {
+        return new ReqErrorResult(ex.getMessage());
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ReqErrorResult handleDuplicateKeyException(DuplicateKeyException ex) {
+        return new ReqErrorResult("sd");
+    }
 
     @ExceptionHandler(BaseException.class)
     public ReqErrorResult handleAuthorizationException(BaseException ex) {
