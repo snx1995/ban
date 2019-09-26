@@ -3,6 +3,7 @@
         <slot name="icon" class="btn-icon"></slot>
         <i class="icon-spinner i-loading" v-if="loading"></i>
         <slot></slot>
+        <slot name="icon-post" class="btn-icon"></slot>
     </button>
 </template>
 <script>

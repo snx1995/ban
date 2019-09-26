@@ -1,7 +1,9 @@
-import BButton from './button'
+import BButton from './button';
+import BSwitch from './switch';
 
 const components = {
-    BButton
+    BButton,
+    BSwitch
 }
 
 const directives = {
@@ -18,6 +20,6 @@ const install = (vue, opts = {}) => {
 if (window && window.Vue) install(window.Vue)
 
 export default {
-    BButton,
+    ...components,
     install
 }
