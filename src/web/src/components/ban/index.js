@@ -1,9 +1,13 @@
 import BButton from './button';
 import BSwitch from './switch';
+import BCheckbox from './checkbox';
+import BRadio from './radio';
 
 const components = {
     BButton,
-    BSwitch
+    BSwitch,
+    BCheckbox,
+    BRadio
 }
 
 const directives = {

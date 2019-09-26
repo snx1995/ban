@@ -47,7 +47,13 @@ export default {
         display: none;
         &.enabled + span {
             background-color: @success;
-            &::before {
+            &.sm::before {
+                left: 15px;
+            }
+            &.md::before {
+                left: 20px;
+            }
+            &.lg::before {
                 left: 20px;
             }
         }
@@ -57,11 +63,12 @@ export default {
         position: relative;
         background-color: @ghost;
         transition: background-color .3s;
+        margin: 5px 0;
         &.sm {
             border-radius: 10px;
             height: 15px;
-            width: 40px;
-            &::before {
+            width: 35px;
+            &.sm::before {
                 width: 20px;
                 height: 20px;
             }

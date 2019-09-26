@@ -1,7 +1,7 @@
 <template>
-    <button class="ban-btn" :class="[types[type], size]" @click.stop="handleClick">
+    <button class="ban-btn" :class="[types[type], size, disabled  ? 'disabled' : '']" @click.stop="handleClick">
         <slot name="icon" class="btn-icon"></slot>
-        <i class="icon-spinner i-loading" v-if="loading"></i>
+        <i class="icon-spinner2 i-loading" v-if="loading"></i>
         <slot></slot>
         <slot name="icon-post" class="btn-icon"></slot>
     </button>
@@ -24,6 +24,10 @@ export default {
             validator(value) {
                 return value == 'sm' || value == 'md' || value == 'lg';
             }
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -40,7 +44,7 @@ export default {
     },
     methods: {
         handleClick() {
-            if (!this.loading) this.$emit('click');
+            if (!this.loading && !this.disabled) this.$emit('click');
         }
     }
 }
@@ -55,10 +59,15 @@ button {
     box-shadow: none;
     border: 1px solid;
     color: @fontColorLight;
+    &:not(.disabled):hover {
+        filter: brightness(.9);
+    }
     &:active {
         outline: none;
         box-shadow: none;
-        filter: brightness(.9);
+        &:not(.disabled) {
+            filter: brightness(.8);
+        }
     }
     .i-loading {
         display: inline-block;
@@ -107,6 +116,12 @@ button {
     &.ghost {
         background-color: @ghost;
         border-color: @ghost;
+    }
+    &.disabled {
+        cursor: default;
+        background-color: @disabled;
+        border-color: @disabled;
+        color: @fontColorDisabled;
     }
 }
 </style>
