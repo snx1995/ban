@@ -61,7 +61,6 @@ export default {
             border-radius: 10px;
             height: 15px;
             width: 40px;
-            margin: 0 10px;
             &::before {
                 width: 20px;
                 height: 20px;
@@ -71,7 +70,6 @@ export default {
             border-radius: 10px;
             height: 20px;
             width: 50px;
-            margin: 0 10px;
             &::before {
                 width: 30px;
                 height: 30px;
@@ -81,7 +79,6 @@ export default {
             border-radius: 15px;
             height: 30px;
             width: 60px;
-            margin: 0 20px;
             &::before {
                 width: 40px;
                 height: 40px;
