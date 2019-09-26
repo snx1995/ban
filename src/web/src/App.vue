@@ -9,6 +9,8 @@ export default {
 }
 </script>
 <style>
+@import url(../static/style.css);
+@import url(../static/animate.css);
 * {
     padding: 0;
     margin: 0;

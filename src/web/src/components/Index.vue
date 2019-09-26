@@ -1,15 +1,11 @@
 <template>
     <div class="index">
-        <h1>{{title}}</h1>
-        <Button>Test</Button>
+        <h1><i class="icon-spinner6"></i>{{title}}</h1>
+        <BButton :loading="true">Test</BButton>
     </div>
 </template>
 <script>
-import Button from './common/button'
 export default {
-    components: {
-        Button
-    },
     data() {
         return {
             title: 'It works!'
@@ -18,5 +14,11 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-
+.index {
+    .borderBox();
+    i {
+        display: inline-block;
+        animation: rotate 1s linear infinite;
+    }
+}
 </style>

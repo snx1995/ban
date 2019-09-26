@@ -13,6 +13,7 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
   "dependencies": {
+    "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lessc": "^1.0.2",
     "vue": "^2.5.2",
