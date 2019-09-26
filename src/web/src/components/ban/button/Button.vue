@@ -1,5 +1,5 @@
 <template>
-    <button class="ban-btn" :class="[types[type], size, disabled  ? 'disabled' : '']" @click.stop="handleClick">
+    <button class="ban-btn" :class="[themes[theme], size, disabled  ? 'disabled' : '']" @click.stop="handleClick">
         <slot name="icon" class="btn-icon"></slot>
         <i class="icon-spinner2 i-loading" v-if="loading"></i>
         <slot></slot>
@@ -14,7 +14,7 @@ export default {
             type: Boolean,
             default: false
         },
-        type: {
+        theme: {
             type: String,
             default: 'default'
         },
@@ -32,7 +32,7 @@ export default {
     },
     data() {
         return {
-            types: {
+            themes: {
                 primary: 'primary',
                 success: 'success',
                 info: 'info',

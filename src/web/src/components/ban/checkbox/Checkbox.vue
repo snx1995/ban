@@ -1,5 +1,5 @@
 <template>
-    <label class="b-checkbox" @click.stop="handleChange" :class="[type]">
+    <label class="b-checkbox" @click.stop="handleChange" :class="[theme]">
         <input type="checkbox" @click.stop :name="name">
         <span>
             <i :class="[value == trueValue ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked']"></i>
@@ -29,7 +29,7 @@ export default {
             type: [String, Number, Boolean],
             default: false
         },
-        type: {
+        theme: {
             type: String,
             default: 'primary'
         }

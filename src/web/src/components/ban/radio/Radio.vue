@@ -1,5 +1,5 @@
 <template>
-    <label class="b-radio" @click.stop="handleChange" :class="[type]">
+    <label class="b-radio" @click.stop="handleChange" :class="[theme]">
         <input type="radio" @click.stop :name="name">
         <!-- <span> -->
             <i :class="[value == trueValue ? 'icon-radio-checked2' : 'icon-radio-unchecked']"></i>
@@ -29,7 +29,7 @@ export default {
             type: [String, Number, Boolean],
             default: false
         },
-        type: {
+        theme: {
             type: String,
             default: 'primary'
         }
