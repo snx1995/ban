@@ -1,3 +1,4 @@
-import Radio from './Radio';
+import BRadio from './Radio';
+import BRadioGroup from './RadioGroup';
 
-export default Radio;
+export {BRadio, BRadioGroup};

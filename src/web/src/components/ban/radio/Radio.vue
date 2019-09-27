@@ -1,9 +1,10 @@
 <template>
-    <label class="b-radio" @click.stop="handleChange" :class="[theme]">
-        <input type="radio" @click.stop :name="name">
-        <!-- <span> -->
-            <i :class="[value == trueValue ? 'icon-radio-checked2' : 'icon-radio-unchecked']"></i>
-        <!-- </span> -->
+    <label class="b-radio" :class="[theme]">
+        <input type="radio" @click.stop :name="name" @change="handleChange">
+        <span>
+            <i class="icon-radio-checked2"></i>
+            <i class="icon-radio-unchecked"></i>
+        </span>
         <span class="b-radio-title">
             <slot></slot>
         </span>
@@ -14,7 +15,7 @@
  * style: [primary, ghost, info, warning, danger, success]
  */
 export default {
-    name: 'b-radio',
+    name: 'BRadio',
     props: {
         value: {
             type: [String, Number, Boolean],
@@ -41,8 +42,19 @@ export default {
     },
     methods: {
         handleChange() {
-            if (this.value == this.trueValue) this.$emit('input', this.falseValue);
-            else this.$emit('input', this.trueValue);
+            const inputEl = this.$el.querySelector('input');
+            if (inputEl.checked) this.$emit('input', this.falseValue);
+            else his.$emit('input', this.trueValue);
+        }
+    },
+    mounted() {
+        const inputEl = this.$el.querySelector('input');
+        if (this.value == this.trueValue) inputEl.checked = true;
+        else inputEl.checked = false;
+    },
+    watch: {
+        value() {
+            console.log(this.value);
         }
     }
 }
@@ -52,6 +64,22 @@ export default {
     display: inline-block;
     input {
         display: none;
+        &:checked + span {
+            .icon-radio-checked2 {
+                display: inline-block;
+            }
+            .icon-radio-unchecked {
+                display: none;
+            }
+        }
+        & + span {
+            .icon-radio-checked2 {
+                display: none;
+            }
+            .icon-radio-unchecked {
+                display: inline-block;
+            }
+        }
     }
     &.primary {
         color: @primary;

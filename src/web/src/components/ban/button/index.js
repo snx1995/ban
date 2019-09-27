@@ -1,3 +1,4 @@
-import Button from './Button'
+import BButton from './Button'
+import BButtonGroup from './ButtonGroup';
 
-export default Button;
+export {BButton, BButtonGroup};

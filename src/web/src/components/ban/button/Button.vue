@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-    name: 'b-btn',
+    name: 'BButton',
     props: {
         loading: {
             type: Boolean,

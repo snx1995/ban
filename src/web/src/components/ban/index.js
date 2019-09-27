@@ -1,13 +1,16 @@
-import BButton from './button';
+import {BButton, BButtonGroup} from './button';
 import BSwitch from './switch';
-import BCheckbox from './checkbox';
-import BRadio from './radio';
+import {BCheckbox, BCheckboxGroup} from './checkbox';
+import {BRadio, BRadioGroup} from './radio';
 
 const components = {
     BButton,
+    BButtonGroup,
     BSwitch,
     BCheckbox,
-    BRadio
+    BCheckboxGroup,
+    BRadio,
+    BRadioGroup
 }
 
 const directives = {

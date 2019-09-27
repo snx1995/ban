@@ -1,3 +1,4 @@
 import BCheckbox from './Checkbox';
+import BCheckboxGroup from './CheckboxGroup';
 
-export default BCheckbox;
+export {BCheckbox, BCheckboxGroup};

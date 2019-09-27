@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    
+    name: 'BButtonGroup'
 }
 </script>
 <style lang="less" scoped>

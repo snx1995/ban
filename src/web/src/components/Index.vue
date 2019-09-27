@@ -47,12 +47,12 @@
             <BCheckbox v-model="checkbox[5]" theme="ghost">测试</BCheckbox>
         </div>
         <div class="form-row">
-            <BRadio v-model="radio[0]">测试</BRadio>
-            <BRadio v-model="radio[1]" theme="success">测试</BRadio>
-            <BRadio v-model="radio[2]" theme="info">测试</BRadio>
-            <BRadio v-model="radio[3]" theme="warning">测试</BRadio>
-            <BRadio v-model="radio[4]" theme="danger">测试</BRadio>
-            <BRadio v-model="radio[5]" theme="ghost">测试</BRadio>
+            <BRadio name="test" v-model="radio[0]">测试</BRadio>
+            <BRadio name="test" v-model="radio[1]" theme="success">测试</BRadio>
+            <BRadio name="test" v-model="radio[2]" theme="info">测试</BRadio>
+            <BRadio name="test" v-model="radio[3]" theme="warning">测试</BRadio>
+            <BRadio name="test" v-model="radio[4]" theme="danger">测试</BRadio>
+            <BRadio name="test" v-model="radio[5]" theme="ghost">测试</BRadio>
         </div>
     </div>
 </template>
@@ -63,7 +63,7 @@ export default {
             title: 'It works!',
             loading: false,
             switchValue: [],
-            checkbox: [],
+            checkbox: [false, false, false, false, false, false],
             radio: []
         }
     },

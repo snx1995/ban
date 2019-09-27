@@ -98,7 +98,7 @@ export default {
             top: 50%;
             left: 0;
             transform: translateY(-50%);
-            filter: brightness(.8);
+            filter: brightness(.6);
             border-radius: 50%;
             background-color: inherit;
             box-shadow: 0 0 4px rgba(7, 17, 27, .3);

@@ -2,7 +2,8 @@
     <label class="b-checkbox" @click.stop="handleChange" :class="[theme]">
         <input type="checkbox" @click.stop :name="name">
         <span>
-            <i :class="[value == trueValue ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked']"></i>
+            <i class="icon-checkbox-checked"></i>
+            <i class="icon-checkbox-unchecked"></i>
         </span>
         <span class="b-checkbox-title">
             <slot></slot>
@@ -14,7 +15,7 @@
  * style: [primary, ghost, info, warning, danger, success]
  */
 export default {
-    name: 'b-checkbox',
+    name: 'BCheckbox',
     props: {
         value: {
             type: [String, Number, Boolean],
@@ -44,6 +45,16 @@ export default {
             if (this.value == this.trueValue) this.$emit('input', this.falseValue);
             else this.$emit('input', this.trueValue);
         }
+    },
+    mounted() {
+        const checkboxEl = this.$el.querySelector('input');
+        if (this.value == this.trueValue) checkboxEl.checked = true;
+        else checkboxEl.checked = false;
+    },
+    watch: {
+        value() {
+            console.log(this.value);
+        }
     }
 }
 </script>
@@ -52,6 +63,22 @@ export default {
     display: inline-block;
     input {
         display: none;
+        &:checked + span {
+            .icon-checkbox-checked {
+                display: inline-block;
+            }
+            .icon-checkbox-unchecked {
+                display: none;
+            }
+        }
+        & + span {
+            .icon-checkbox-checked {
+                display: none;
+            }
+            .icon-checkbox-unchecked {
+                display: inline-block;
+            }
+        }
     }
     &.primary {
         color: @primary;
