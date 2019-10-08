@@ -38,7 +38,8 @@ export default {
                 info: 'info',
                 warning: 'warning',
                 danger: 'danger',
-                default: 'default'
+                default: 'default',
+                ghost: 'ghost'
             }
         }
     },
@@ -69,9 +70,9 @@ button {
             filter: brightness(.8);
         }
     }
-    .i-loading {
+    .i-loading::before {
         display: inline-block;
-        animation: rotate 1s linear infinite;
+        animation: rotate 1.5s linear infinite;
     }
     .btn-icon {
         display: inline-block;

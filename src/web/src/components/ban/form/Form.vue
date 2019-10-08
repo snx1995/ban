@@ -1,23 +1,21 @@
 <template>
-    <div class="b-radio-group">
+    <div class="b-form">
         <slot></slot>
-    </div>    
+    </div>
 </template>
 <script>
 export default {
-    name: 'BRadioGroup',
+    name: 'BForm',
+    props: {
+        
+    },
     data() {
         return {
 
         }
-    },
-    mounted() {
-        console.log(this);
     }
 }
 </script>
 <style lang="less" scoped>
-.b-radio-group {
-    .borderBox();
-}
+
 </style>

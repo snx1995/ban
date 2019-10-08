@@ -12,7 +12,7 @@
 </template>
 <script>
 /**
- * style: [primary, ghost, info, warning, danger, success]
+ * theme: [primary, ghost, info, warning, danger, success]
  */
 export default {
     name: 'BCheckbox',

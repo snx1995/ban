@@ -11,11 +11,17 @@
                     <i class="icon-github"></i>
                 </template>
             </BButton>
-            <BButton :loading="loading">默认按钮</BButton>
+            <BButton :loading="loading">
+                <template v-slot:icon>
+                    <i class="icon-home"></i>
+                </template>
+                默认按钮
+            </BButton>
             <BButton theme="danger" :loading="loading">危险</BButton>
             <BButton theme="success" :loading="loading">成功</BButton>
             <BButton theme="info" :loading="loading">提示</BButton>
             <BButton theme="warning" :loading="loading">警告</BButton>
+            <BButton theme="ghost" :loading="loading">ghost</BButton>
             <br>
             <br>
             <BButton theme="primary" :loading="loading" disabled>
@@ -32,6 +38,7 @@
             <BButton theme="success" :loading="loading" disabled>成功</BButton>
             <BButton theme="info" :loading="loading" disabled>提示</BButton>
             <BButton theme="warning" :loading="loading" disabled>警告</BButton>
+            <BButton theme="ghost" :loading="loading" disabled>ghost</BButton>
         </div>
         <div class="form-row">
             <BSwitch v-model="switchValue[4]" trueValue="success" falseValue="failed" size="sm"/>
@@ -54,6 +61,16 @@
             <BRadio name="test" v-model="radio[4]" theme="danger">测试</BRadio>
             <BRadio name="test" v-model="radio[5]" theme="ghost">测试</BRadio>
         </div>
+        <BInput v-model="text" />
+        <BInput v-model="text" theme="primary"/>
+        <BInput v-model="text" theme="info" />
+        <BInput v-model="text" theme="warning" />
+        <BInput v-model="text" theme="danger" />
+        <BInput v-model="text" theme="ghost" />
+        <BInput v-model="text" theme="success" />
+        
+        <br>
+        <BInput v-model="text" type="textarea" placeholder="test"/>
     </div>
 </template>
 <script>
@@ -63,8 +80,9 @@ export default {
             title: 'It works!',
             loading: false,
             switchValue: [],
-            checkbox: [false, false, false, false, false, false],
-            radio: []
+            checkbox: [],
+            radio: [],
+            text: ''
         }
     },
     methods: {

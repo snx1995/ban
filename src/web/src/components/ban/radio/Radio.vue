@@ -1,6 +1,6 @@
 <template>
     <label class="b-radio" :class="[theme]">
-        <input type="radio" @click.stop :name="name" @change="handleChange">
+        <input type="radio" @click.stop :name="name" :value="trueValue" v-model="elValue">
         <span>
             <i class="icon-radio-checked2"></i>
             <i class="icon-radio-unchecked"></i>
@@ -37,14 +37,12 @@ export default {
     },
     data() {
         return {
-
+            elValue: this.value == this.trueValue
         }
     },
     methods: {
         handleChange() {
-            const inputEl = this.$el.querySelector('input');
-            if (inputEl.checked) this.$emit('input', this.falseValue);
-            else his.$emit('input', this.trueValue);
+
         }
     },
     mounted() {
@@ -53,7 +51,11 @@ export default {
         else inputEl.checked = false;
     },
     watch: {
-        value() {
+        elValue() {
+            console.log('elValue', this.elValue);
+            this.$emit('input', this.elValue ? this.trueValue : this.falseValue);
+        },
+        value () {
             console.log(this.value);
         }
     }
