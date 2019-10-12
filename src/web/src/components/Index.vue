@@ -61,16 +61,19 @@
             <BRadio name="test" v-model="radio[4]" theme="danger">测试</BRadio>
             <BRadio name="test" v-model="radio[5]" theme="ghost">测试</BRadio>
         </div>
-        <BInput v-model="text" />
-        <BInput v-model="text" theme="primary"/>
-        <BInput v-model="text" theme="info" />
-        <BInput v-model="text" theme="warning" />
-        <BInput v-model="text" theme="danger" />
-        <BInput v-model="text" theme="ghost" />
-        <BInput v-model="text" theme="success" />
-        
-        <br>
-        <BInput v-model="text" type="textarea" placeholder="test"/>
+        <div class="form-row">
+            <BInput v-model="num" type="number" width="120px"/>
+            <BInput v-model="num" type="number" theme="ghost" width="120px"/>
+            <br>
+            <BInput v-model="text"/>
+            <BInput v-model="text" theme="ghost"/>
+            <BInput v-model="text" theme="success">
+                <template v-slot:prefix>https://</template>
+                <template v-slot:suffix>.com</template>
+            </BInput>
+            <br>
+            <BInput v-model="textarea" type="textarea" placeholder="test"/>
+        </div>
     </div>
 </template>
 <script>
@@ -82,7 +85,9 @@ export default {
             switchValue: [],
             checkbox: [],
             radio: [],
-            text: ''
+            text: '',
+            num: 0,
+            textarea: ''
         }
     },
     methods: {

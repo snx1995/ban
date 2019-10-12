@@ -4,6 +4,7 @@ import {BCheckbox, BCheckboxGroup} from './checkbox';
 import {BRadio, BRadioGroup} from './radio';
 import {BInput} from './input';
 import {BForm, BFormItem} from './form';
+import {BGrid, BGridRow, BGridItem} from './grid';
 
 const components = {
     BButton,
@@ -15,7 +16,10 @@ const components = {
     BRadioGroup,
     BInput,
     BForm,
-    BFormItem
+    BFormItem,
+    BGrid,
+    BGridRow,
+    BGridItem
 }
 
 const directives = {

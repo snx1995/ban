@@ -1,7 +1,7 @@
 <template>
-    <label class="b-checkbox" @click.stop="handleChange" :class="[theme]">
+    <label class="b-checkbox" @click.stop="handleChange" :class="[theme, value == trueValue ? 'checked' : '']">
         <input type="checkbox" @click.stop :name="name">
-        <span>
+        <span class="b-checkbox-icon">
             <i class="icon-checkbox-checked"></i>
             <i class="icon-checkbox-unchecked"></i>
         </span>
@@ -63,21 +63,23 @@ export default {
     display: inline-block;
     input {
         display: none;
-        &:checked + span {
-            .icon-checkbox-checked {
-                display: inline-block;
-            }
-            .icon-checkbox-unchecked {
-                display: none;
-            }
+    }
+    .b-checkbox-icon {
+        position: relative;
+        i {
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        & + span {
-            .icon-checkbox-checked {
-                display: none;
-            }
-            .icon-checkbox-unchecked {
-                display: inline-block;
-            }
+        .icon-checkbox-checked::before {
+            display: block;
+            transition: transform .3s;
+            transform: scale(0) rotate(90deg);
+        }
+    }
+    &.checked {
+        .icon-checkbox-checked::before {
+            transform: scale(1) rotate(0);
         }
     }
     &.primary {
@@ -100,6 +102,7 @@ export default {
     }
     .b-checkbox-title {
         color: @fontColorDark;
+        padding-left: 1.2em;
     }
 }
 </style>

@@ -4,9 +4,11 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 
+import VueDraggable from './vuedraggable';
 import Ban from './components/ban'
 
 Vue.use(Ban);
+Vue.use(VueDraggable);
 
 Vue.config.productionTip = false
 

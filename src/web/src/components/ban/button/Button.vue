@@ -1,7 +1,7 @@
 <template>
     <button class="ban-btn" :class="[themes[theme], size, disabled  ? 'disabled' : '']" @click.stop="handleClick">
         <slot name="icon" class="btn-icon"></slot>
-        <i class="icon-spinner2 i-loading" v-if="loading"></i>
+        <i class="icon-spinner3 i-loading" v-if="loading"></i>
         <slot></slot>
         <slot name="icon-post" class="btn-icon"></slot>
     </button>
@@ -72,7 +72,7 @@ button {
     }
     .i-loading::before {
         display: inline-block;
-        animation: rotate 1.5s linear infinite;
+        animation: rotate 1s steps(12) infinite;
     }
     .btn-icon {
         display: inline-block;
