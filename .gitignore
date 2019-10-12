@@ -8,5 +8,5 @@ target
 **/system.properties
 **/*DS_Store
 ._*
-**/.node_modules
+**/node_modules
 
