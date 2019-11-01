@@ -1,10 +1,14 @@
-import {BButton, BButtonGroup} from './button';
-import BSwitch from './switch';
-import {BCheckbox, BCheckboxGroup} from './checkbox';
-import {BRadio, BRadioGroup} from './radio';
-import {BInput} from './input';
-import {BForm, BFormItem} from './form';
-import {BGrid, BGridRow, BGridItem} from './grid';
+//components
+import {BButton, BButtonGroup} from './components/button';
+import BSwitch from './components/switch';
+import {BCheckbox, BCheckboxGroup} from './components/checkbox';
+import {BRadio, BRadioGroup} from './components/radio';
+import {BInput} from './components/input';
+import {BForm, BFormItem} from './components/form';
+import {BGrid, BGridRow, BGridItem} from './components/grid';
+
+// directives
+import Bloading from './directives/loading';
 
 const components = {
     BButton,
@@ -23,13 +27,18 @@ const components = {
 }
 
 const directives = {
-
+    Bloading
 }
 
 const install = (vue, opts = {}) => {
     if (install.installed) return;
     Object.keys(components).forEach(key => {
         vue.component(key, components[key])
+    })
+
+    Object.keys(directives).forEach(key => {
+        const directive = directives[key];
+        vue.directive(directive.name, directive);
     })
 
     vue.prototype.$ban = {

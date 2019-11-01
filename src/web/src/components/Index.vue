@@ -1,5 +1,5 @@
 <template>
-    <div class="index">
+    <div class="index" v-bloading="true">
         <h1>{{title}}</h1>
         <div class="form-row">
             <BButton theme="primary" :loading="loading" @click="loading = true">
@@ -74,6 +74,11 @@
             <br>
             <BInput v-model="textarea" type="textarea" placeholder="test"/>
         </div>
+        <div class="form-row">
+            <VueDraggable v-model="tags" :option="draggableOptions" el="div" class="drag-content">
+                <div class="tag" v-for="(item, index) in tags" :key="index">{{item}}</div>
+            </VueDraggable>
+        </div>
     </div>
 </template>
 <script>
@@ -87,7 +92,11 @@ export default {
             radio: [],
             text: '',
             num: 0,
-            textarea: ''
+            textarea: '',
+            tags: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+            draggableOptions: {
+
+            }
         }
     },
     methods: {
@@ -107,6 +116,17 @@ export default {
         border-top: 1px dashed @ghost;
         &:last-child {
             border-bottom: 1px dashed @ghost;
+        }
+    }
+    .drag-content {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .tag {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #00b3ee;
+            margin: 10px;
         }
     }
 }
