@@ -15,6 +15,13 @@ export default {
     padding: 0;
     margin: 0;
 }
+body, html {
+    width: 100%;
+    height: 100%;
+    background-image: url('../static/imgs/bg.jpg');
+    background-size: 100%;
+    background-attachment: fixed;
+}
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
