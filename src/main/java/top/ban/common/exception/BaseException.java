@@ -9,6 +9,10 @@ public class BaseException extends RuntimeException {
         this.data = data;
     }
 
+    public BaseException(String msg) {
+        super(msg);
+    }
+
     public Object getData() {
         return data;
     }

@@ -27,6 +27,7 @@ public class BanReturnValueHandler extends RequestResponseBodyMethodProcessor {
 
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
+        
         if (returnValue instanceof ResponseEntity) {
             ResponseEntity entity = (ResponseEntity) returnValue;
             returnValue = entity.getBody();

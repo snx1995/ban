@@ -18,20 +18,18 @@ Vue.prototype.$net = axios;
 initAxios();
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 });
 
 function initAxios() {
-  axios.defaults.baseURL = '/rest';
-  // axios.interceptors.request.use(config => {
-  //   config.url = '/rest' + config.url;
-  //   return config;
-  // });
-
-  axios.interceptors.response.use(response => {
-    return response.data;
-  })
+    axios.defaults.baseURL = '/rest';
+    axios.interceptors.response.use(response => {
+        if (response.status < 300) {
+            if (response.data.code == 0) return response.data;
+            else throw new Error(response.data.msg);
+        } else return response;
+    })
 }

@@ -10,6 +10,7 @@ import top.ban.common.AuthorityLevel;
 import top.ban.common.entity.vo.user.LoginParam;
 import top.ban.common.entity.vo.user.RegisterParam;
 import top.ban.common.entity.vo.user.UserVO;
+import top.ban.common.exception.AuthorizationException;
 import top.ban.platform.authority.UserTokenService;
 
 @Controller
@@ -25,6 +26,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public UserVO login(@RequestBody LoginParam param) {
+        if ("exception".equals(param.getAccount())) throw new AuthorizationException();
         UserVO user = new UserVO();
         user.setAuthLv(AuthorityLevel.SUPER_ADMIN);
         user.setName(param.getAccount());

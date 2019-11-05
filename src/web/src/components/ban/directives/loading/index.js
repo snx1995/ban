@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import BLoading from './Loading';
 
 /**
@@ -9,11 +10,13 @@ import BLoading from './Loading';
  *  arg：传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 "foo"。
  *  modifiers：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。
  */
+const Loading = Vue.extend(BLoading);
 
 export default {
-    name: 'bloading',
-    bind(el, binding, vnode, oldVnode) {
-        console.log(el, binding, vnode, oldVnode);
-        console.log(BLoading);
-    }
+  name: 'bloading',
+  bind(el, binding, vnode, oldVnode) {
+    console.log(el, binding, vnode, oldVnode);
+    console.log(BLoading);
+    const loading = new Loading({})
+  }
 }
