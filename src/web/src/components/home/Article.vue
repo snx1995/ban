@@ -13,7 +13,7 @@
             </div>
             <div class="style style-1" v-if="art.style == 1">
                 <div class="content">
-                    <div v-for="(img, index) in art.data.imgs" :key="index" class="img-content">
+                    <div v-for="(img, index) in art.data.img" :key="index" class="img-content">
                         <img :src="img">
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export default {
     name: 'Article',
     props: {
         article: {
-            type: Array,
+            type: Object,
             default () {
                 return []
             }
@@ -76,6 +76,9 @@ export default {
     width: 100%;
     .style {
         width: 100%;
+        p {
+          white-space: pre-wrap;
+        }
         &.style-0 {
             .slogan {
                 width: 100%;
@@ -146,9 +149,6 @@ export default {
                         h1 {
                             font-size: 1.5em;
                             padding: 20px 0;
-                        }
-                        p {
-                            white-space: pre;
                         }
                     }
                     img {

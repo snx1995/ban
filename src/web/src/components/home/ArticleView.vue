@@ -16,7 +16,7 @@ export default {
                 art0: {
                     style: 0,
                     data: {
-                        slogen: '../../static/imgs/bg.jpg',
+                        slogan: '../../static/imgs/bg.jpg',
                         title: '啊啊啊啊啊啊啊啊啊啊啊',
                         subTitle: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
                         body: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
@@ -25,7 +25,7 @@ export default {
                 art1: {
                     style: 1,
                     data: {
-                        imgs: [
+                        img: [
                             '../../static/imgs/1.jpg',
                             '../../static/imgs/2.jpg',
                             '../../static/imgs/3.jpg',
@@ -44,7 +44,9 @@ export default {
                         ],
                         body: [
                             '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
-                            '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
+                            `啊啊啊啊啊啊啊
+                            啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                            啊啊`,
                             '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
                         ],
                         img: [
@@ -56,6 +58,11 @@ export default {
                 }
             }
         }
+    },
+    mounted() {
+        this.$net.post('/test/uploadArticle', this.article).then(res => {
+            console.log(res);
+        })
     }
 }
 </script>

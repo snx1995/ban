@@ -8,12 +8,15 @@ import top.ban.platform.authority.UserToken;
 import top.ban.platform.authority.UserTokenService;
 import top.ban.platform.variable.SysConstVar;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Component
 public class ReqInterceptor extends HandlerInterceptorAdapter {
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+
     private UserTokenService tokenService;
 
     public ReqInterceptor(UserTokenService tokenService) {
@@ -23,6 +26,7 @@ public class ReqInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String tokenStr = request.getParameter(SysConstVar.TOKEN_KEY);
+        if (tokenStr == null) tokenStr = request.getHeader(AUTHORIZATION_HEADER);
         if (tokenStr != null) {
             HttpSession session = request.getSession();
             UserToken token = (UserToken) session.getAttribute(SysConstVar.SESSION_TOKEN);

@@ -16,6 +16,11 @@ export default new Router({
       path: '/grid',
       name: 'grid',
       component: Grid
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../components/home/Test')
     }
   ]
 })

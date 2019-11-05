@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import axios from 'axios';
 
 import VueDraggable from 'vuedraggable';
 import Ban from './components/ban'
@@ -10,12 +11,27 @@ import Ban from './components/ban'
 Vue.use(Ban);
 Vue.component('VueDraggable', VueDraggable);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
+Vue.prototype.$net = axios;
+
+initAxios();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-})
+});
+
+function initAxios() {
+  axios.defaults.baseURL = '/rest';
+  // axios.interceptors.request.use(config => {
+  //   config.url = '/rest' + config.url;
+  //   return config;
+  // });
+
+  axios.interceptors.response.use(response => {
+    return response.data;
+  })
+}
