@@ -8,7 +8,6 @@ import top.ban.platform.authority.UserToken;
 import top.ban.platform.authority.UserTokenService;
 import top.ban.platform.variable.SysConstVar;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

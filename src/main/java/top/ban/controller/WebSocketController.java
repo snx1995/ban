@@ -15,8 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Controller
 @ServerEndpoint("/socket/{userId}")
 public class WebSocketController {
-    private static volatile int onlineCount = 0;
-
     private Session session;
     private String userId;
 
@@ -44,5 +42,9 @@ public class WebSocketController {
         if (this.session.isOpen()) {
             this.session.getBasicRemote().sendText(JSON.stringify(message));
         }
+    }
+
+    public int getOnlineCount() {
+        return clients.size();
     }
 }
