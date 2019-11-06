@@ -7,7 +7,6 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import top.ban.platform.component.SysEventBus;
 import top.ban.platform.handler.BanArgumentsHandler;
 import top.ban.platform.handler.BanReturnValueHandler;
 import top.ban.platform.interceptor.AuthorityInterceptor;

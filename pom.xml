@@ -72,6 +72,10 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>src/web</directory>
+                <targetPath>web</targetPath>
+            </resource>
         </resources>
 
         <testResources>

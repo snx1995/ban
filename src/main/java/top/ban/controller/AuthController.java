@@ -40,6 +40,7 @@ public class AuthController {
     @PostMapping("/register")
     public RegisterParam register(@RequestBody RegisterParam param) {
         int count = userMapper.insertUser(param);
+        if (count != 1) throw new Error();
         return param;
     }
 
