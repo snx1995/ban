@@ -73,7 +73,7 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>src/web</directory>
+                <directory>src/web/dist</directory>
                 <targetPath>web</targetPath>
             </resource>
         </resources>
