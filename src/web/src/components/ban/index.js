@@ -7,6 +7,7 @@ import {BInput} from './components/input';
 import {BForm, BFormItem} from './components/form';
 import {BGrid, BGridRow, BGridItem} from './components/grid';
 import {BMessageContainer} from './components/message';
+import {Confirm} from './components/confirm';
 
 // directives
 import Bloading from './directives/loading';
@@ -41,7 +42,8 @@ const install = (vue, opts = {}) => {
         const directive = directives[key];
         vue.directive(directive.name, directive);
     })
-
+    
+    vue.prototype.$confirm = Confirm;
     vue.prototype.$ban = {
         changeTheme(theme) {
             

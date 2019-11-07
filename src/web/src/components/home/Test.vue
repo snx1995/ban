@@ -1,11 +1,13 @@
 <template>
     <div class="test">
-        <i class="fa fa-fan"></i>
+        <!-- <i class="fa fa-fan"></i> -->
         <BInput v-model="msg"/>
         <BButton @click="handleNewMsg">msg</BButton>
+        <BButton @click="handleNewConfirm">confirm</BButton>
     </div>
 </template>
 <script>
+let count = 0;
 import axios from "axios";
 export default {
     name: "Test",
@@ -15,18 +17,35 @@ export default {
         };
     },
     mounted() {
-        // this.$net.post("/auth/login", {
-        //     account: "exception",
-        //     password: "banyq"
-        // }).then(res => {
-        //     axios.defaults.headers["Authorization"] = res.data.token;
-        // }).catch(err => {
-        //     console.log(err);
-        // })
+
     },
     methods: {
         handleNewMsg() {
-            this.$msg.success(this.msg)
+            switch (count++ % 4) {
+                case 0:
+                    this.$msg.success(this.msg);
+                    break;
+                case 1:
+                    this.$msg.info(this.msg);
+                    break;
+                case 2:
+                    this.$msg.warning(this.msg);
+                    break;
+                case 3:
+                    this.$msg.error(this.msg);
+                    break;
+            }
+        },
+        handleNewConfirm() {
+            this.$confirm({
+                title: 'Hello world',
+                prompt: 'test'
+            }).then(() => {
+                console.log('confirm');
+            }).catch(err => {
+                console.log(err);
+                console.log('cancel');
+            })
         }
     }
 };
@@ -36,5 +55,8 @@ export default {
     font-size: 64px;
     color: white;
     animation: rotate 1s infinite linear;
+}
+.test {
+    text-align: left;
 }
 </style>

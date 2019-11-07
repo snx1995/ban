@@ -37,7 +37,7 @@ export default {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 300px;
     max-height: 100%;
     padding-right: 10px;
 }

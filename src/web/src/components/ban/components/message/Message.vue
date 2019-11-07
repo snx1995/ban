@@ -1,9 +1,16 @@
 <template>
     <div class="ban-message" :class="[type]" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" @click="handleClick">
-        <span>{{message}}</span>
+        <i class="message-icon" :class="iconClass"></i>
+        <span class="message-content">{{message}}</span>
     </div>
 </template>
 <script>
+const iconCLassMap = {
+    success: 'icon-check-circle',
+    info: 'icon-info-circle',
+    warning: 'icon-exclamation-circle',
+    error: 'icon-times-circle'
+}
 export default {
     name: 'BMessage',
     props: {
@@ -23,7 +30,8 @@ export default {
             clickCallback() {},
             closeCallback() {},
             autoClose: true,
-            autoCloseDelay: 5000
+            autoCloseDelay: 5000,
+            iconClass: 'icon-check-circle'
         }
     },
     methods: {
@@ -52,6 +60,7 @@ export default {
         if (option.closeCallback) this.closeCallback = option.closeCallback;
         if (option.autoClose) this.autoClose = option.autoClose;
         if (option.autoCloseDelay) this.autoCloseDelay = option.autoCloseDelay;
+        this.iconClass = iconCLassMap[this.type]
         this.autoCloseTimer = setTimeout(() => this.handleClose(), this.autoCloseDelay);
     },
     watch: {
@@ -66,23 +75,50 @@ export default {
     .borderBox();
     position: relative;
     width: 100%;
-    padding: 20px;
+    padding: 20px 10px;
     border-left: 10px solid;
     border-radius: 10px;
     background-color: #fff;
     margin-top: 10px;
     box-shadow: 0 12px 24px rgba(7, 17, 27, .2);
+    display: flex;
+    .message-icon {
+        font-size: 16px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+    }
+    .message-content {
+        .borderBox();
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 50px;
+        white-space: pre-wrap;
+    }
     &.success {
         border-color: @success;
+        .message-icon {
+            color: @success;
+        }
     }
     &.warning {
         border-color: @warning;
+        .message-icon {
+            color: @warning;
+        }
     }
     &.error {
         border-color: @error;
+        .message-icon {
+            color: @error;
+        }
     }
     &.info {
         border-color: @info;
+        .message-icon {
+            color: @info;
+        }
     }
 }
 </style>
