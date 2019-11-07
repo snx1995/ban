@@ -1,3 +1,3 @@
 import BMessageContainer from './MessageContainer';
 
-export default {BMessageContainer}
+export {BMessageContainer};

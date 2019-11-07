@@ -6,6 +6,7 @@ import {BRadio, BRadioGroup} from './components/radio';
 import {BInput} from './components/input';
 import {BForm, BFormItem} from './components/form';
 import {BGrid, BGridRow, BGridItem} from './components/grid';
+import {BMessageContainer} from './components/message';
 
 // directives
 import Bloading from './directives/loading';
@@ -45,6 +46,46 @@ const install = (vue, opts = {}) => {
         changeTheme(theme) {
             
         }
+    }
+
+    initMessageContainer();
+
+    function initMessageContainer() {
+        let index = 1;
+        const mcf = vue.extend(BMessageContainer);
+        const mc = new mcf();
+        function messager(msg) {
+            msg.id = index ++;
+            mc.$data.msgs.unshift(msg);
+        }
+
+        vue.prototype.$msg = messager;
+
+        messager.success = message => {
+            messager({
+                type: 'success',
+                message
+            })
+        }
+        messager.warning = message => {
+            messager({
+                type: 'warning',
+                message
+            })
+        }
+        messager.info = message => {
+            messager({
+                type: 'info',
+                message
+            })
+        }
+        messager.error = message => {
+            messager({
+                type: 'error',
+                message
+            })
+        }
+        document.body.appendChild(mc.$mount().$el);
     }
 }
 

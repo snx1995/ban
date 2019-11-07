@@ -22,6 +22,12 @@ export default {
         return {
 
         }
+    },
+    mounted() {
+        this.$msg.success('success');
+        this.$msg.info('info');
+        this.$msg.warning('warning');
+        this.$msg.error('error');
     }
 }
 </script>

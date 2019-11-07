@@ -10,12 +10,13 @@ export default {
         option: {
             type: Object,
             default: {}
-        }
+        },
+        index: Number
     },
     data() {
         return {
+            id: -1,
             autoCloseTimer: undefined,
-            id: new Date().getTime(),
             type: 'success',
             message: '',
             closeable: true,
@@ -31,13 +32,14 @@ export default {
         },
         handleMouseLeave() {
             if (this.autoCloseTimer) clearTimeout(this.autoCloseTimer);
-            this.autoCloseTimer = setTimeout(() => {
-                this.$emit('close', this.id)
-                if (typeof this.closeCallback == 'function') this.closeCallback();
-            }, this.autoCloseDelay);
+            this.autoCloseTimer = setTimeout(() => this.handleClose(), this.autoCloseDelay);
         },
         handleMouseEnter() { 
             if (this.autoCloseTimer) clearTimeout(this.autoCloseTimer);
+        },
+        handleClose() {
+            this.$emit('close', this.id);
+            this.closeCallback();
         }
     },
     mounted() {
@@ -50,21 +52,26 @@ export default {
         if (option.closeCallback) this.closeCallback = option.closeCallback;
         if (option.autoClose) this.autoClose = option.autoClose;
         if (option.autoCloseDelay) this.autoCloseDelay = option.autoCloseDelay;
+        this.autoCloseTimer = setTimeout(() => this.handleClose(), this.autoCloseDelay);
+    },
+    watch: {
+        autoCloseTimer() {
 
-        this.autoCloseTimer = setTimeout(() => {
-            this.$emit('close', this.id);
-            this.closeCallback();
-        }, this.autoCloseDelay);
+        }
     }
 }
 </script>
 <style lang="less" scoped>
 .ban-message {
+    .borderBox();
     position: relative;
     width: 100%;
     padding: 20px;
-    border-left: 10px;
+    border-left: 10px solid;
     border-radius: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    box-shadow: 0 12px 24px rgba(7, 17, 27, .2);
     &.success {
         border-color: @success;
     }
