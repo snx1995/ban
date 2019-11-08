@@ -31,7 +31,6 @@ export default {
         }
     },
     unbind(el) {
-        console.log(111);
         el.loadEL && el.loadEl.remove();
         el.instance && el.instance.$destroy();
     }

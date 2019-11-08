@@ -4,6 +4,7 @@
         <BInput v-model="msg"/>
         <BButton @click="handleNewMsg">msg</BButton>
         <BButton @click="handleNewConfirm">confirm</BButton>
+        <BButton @click="handleLoading">loading</BButton>
     </div>
 </template>
 <script>
@@ -14,14 +15,11 @@ export default {
     data() {
         return {
             msg: 'default',
-            loading: true
+            loading: false
         };
     },
     mounted() {
-        // setTimeout(() => {
-        //     this.loading = false;
-        //     console.log(11111);
-        // }, 2000);
+
     },
     methods: {
         handleNewMsg() {
@@ -43,13 +41,17 @@ export default {
         handleNewConfirm() {
             this.$confirm({
                 title: 'Hello world',
-                prompt: 'test'
+                prompt: 'testasdasdadqweqwadsdqweqe asd a zx asdasd zxc zxc zc z zc zxc z'
             }).then(() => {
                 console.log('confirm');
             }).catch(err => {
                 console.log(err);
                 console.log('cancel');
             })
+        },
+        handleLoading() {
+            this.loading = true;
+            setTimeout(() => this.loading = false, 2000);
         }
     }
 };
@@ -61,6 +63,8 @@ export default {
     animation: rotate 1s infinite linear;
 }
 .test {
+    background-color: #fff;
+    padding: 100px 0;
     text-align: left;
 }
 </style>

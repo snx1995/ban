@@ -1,8 +1,12 @@
 <template>
-    <div class="b-loading" v-show="loading">
-        <div class="loading-content">
-            <i class="icon-spinner2"></i>
-        </div>
+    <div>
+        <transition name="fade" tag="div">
+            <div class="b-loading" v-show="loading">
+                <div class="loading-content">
+                    <i class="icon-spinner2"></i>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 <script>

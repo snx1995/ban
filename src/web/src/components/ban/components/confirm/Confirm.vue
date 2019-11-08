@@ -3,9 +3,10 @@
         <div class="overlay" @click="handleCancel"></div>
         <transition tag="div" name="fade">
             <div class="content" v-show="showContent">
-                <div class="title"><i class="confirm-icon"></i>{{title}}</div>
+                <div class="title">{{title}}</div>
                 <div class="body">
-                    {{prompt}}
+                    <i class="confirm-icon icon-question-circle"></i>
+                    <p>{{prompt}}</p>
                 </div>
                 <div class="footer">
                     <BButton @click="handleCancel">{{cancelText}}</BButton>
@@ -81,7 +82,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.3);
     }
     .content {
         position: absolute;
@@ -89,12 +90,31 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: #fff;
-        min-width: 300px;
+        min-width: 400px;
+        padding: 10px;
+        border-radius: 10px;
         .title {
             width: 100%;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            
         }
         .body {
-            padding: 20px;
+            padding: 10px 10px 20px;
+            display: flex;
+            .confirm-icon {
+                padding-right: 10px;
+                color: @warning;
+                font-size: 24px;
+                vertical-align: sub;
+            }
+            p {
+                flex-grow: 1;
+            }
+        }
+        .footer {
+            text-align: right;
         }
     }
 }
