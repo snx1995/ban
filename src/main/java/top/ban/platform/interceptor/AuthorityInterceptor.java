@@ -5,8 +5,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import top.ban.common.AuthorityLevel;
+import top.ban.common.ResStatus;
 import top.ban.common.annotation.AuthLV;
-import top.ban.common.exception.AuthorizationException;
+import top.ban.common.exception.ReqHandleException;
 import top.ban.platform.authority.UserToken;
 import top.ban.platform.variable.SysConstVar;
 
@@ -24,11 +25,11 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
             HandlerMethod method = (HandlerMethod) handler;
             AuthLV classLv = method.getBeanType().getAnnotation(AuthLV.class);
             AuthLV methodLv = method.getMethod().getAnnotation(AuthLV.class);
-            if (token == null && (classLv != null || methodLv != null)) throw new AuthorizationException();
+            if (token == null && (classLv != null || methodLv != null)) throw new ReqHandleException(ResStatus.AUTH_FAILED);
             else if (token != null) {
                 AuthorityLevel userLv = token.getAuthLevel();
-                if (classLv != null && userLv.higherThan(classLv.value())) throw new AuthorizationException();
-                if (methodLv != null && userLv.higherThan(methodLv.value())) throw new AuthorizationException();
+                if (classLv != null && userLv.higherThan(classLv.value())) throw new ReqHandleException(ResStatus.AUTH_FAILED);
+                if (methodLv != null && userLv.higherThan(methodLv.value())) throw new ReqHandleException(ResStatus.AUTH_FAILED);
             }
             return true;
         }

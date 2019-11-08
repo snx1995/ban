@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.ban.business.dao.TestDao;
 import top.ban.common.AuthorityLevel;
+import top.ban.common.ResStatus;
 import top.ban.common.annotation.AuthLV;
 import top.ban.common.annotation.Required;
 import top.ban.common.entity.vo.TestVO;
-import top.ban.common.exception.InvalidParamException;
+import top.ban.common.exception.ReqHandleException;
 import top.ban.platform.authority.UserToken;
 import top.ban.platform.authority.UserTokenService;
 
@@ -30,7 +31,7 @@ class FirstController {
     @AuthLV(AuthorityLevel.ADMIN)
     @GetMapping("/{name}")
     public HashMap<String, Object> name(@PathVariable @Required String name) {
-        if ("error".equals(name)) throw new InvalidParamException(name);
+        if ("error".equals(name)) throw new ReqHandleException(ResStatus.INVALID_PARAM, name);
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);
         result.put("age", 11);

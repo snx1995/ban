@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import top.ban.common.ReqErrorResult;
-import top.ban.common.exception.BaseException;
+import top.ban.common.exception.ReqHandleException;
 
 @RestController
 @ControllerAdvice
@@ -25,8 +25,8 @@ public class CenterExceptionHandler {
         return new ReqErrorResult("sd");
     }
 
-    @ExceptionHandler(BaseException.class)
-    public ReqErrorResult handleAuthorizationException(BaseException ex) {
+    @ExceptionHandler(ReqHandleException.class)
+    public ReqErrorResult handleAuthorizationException(ReqHandleException ex) {
         return new ReqErrorResult(ex);
     }
 }

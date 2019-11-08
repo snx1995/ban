@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.ban.business.dao.UserMapper;
 import top.ban.common.AuthorityLevel;
+import top.ban.common.ResStatus;
 import top.ban.common.entity.vo.user.LoginParam;
 import top.ban.common.entity.vo.user.RegisterParam;
 import top.ban.common.entity.vo.user.UserVO;
-import top.ban.common.exception.AuthorizationException;
+import top.ban.common.exception.ReqHandleException;
 import top.ban.platform.authority.UserTokenService;
 
 @Controller
@@ -26,7 +27,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public UserVO login(@RequestBody LoginParam param) {
-        if ("exception".equals(param.getAccount())) throw new AuthorizationException();
+        if ("exception".equals(param.getAccount())) throw new ReqHandleException(ResStatus.AUTH_FAILED);
         UserVO user = new UserVO();
         user.setAuthLv(AuthorityLevel.SUPER_ADMIN);
         user.setName(param.getAccount());

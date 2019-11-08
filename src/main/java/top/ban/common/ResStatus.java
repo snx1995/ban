@@ -2,7 +2,9 @@ package top.ban.common;
 
 public enum ResStatus {
     FAILED(-1, "failed"),
-    SUCCEEDED(0, "success")
+    SUCCEEDED(0, "success"),
+    AUTH_FAILED(1, "auth failed"),
+    INVALID_PARAM(2, "invalid param")
     ;
 
     private int code;
