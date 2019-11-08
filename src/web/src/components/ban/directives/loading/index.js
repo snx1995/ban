@@ -13,10 +13,26 @@ import BLoading from './Loading';
 const Loading = Vue.extend(BLoading);
 
 export default {
-  name: 'bloading',
-  bind(el, binding, vnode, oldVnode) {
-    console.log(el, binding, vnode, oldVnode);
-    console.log(BLoading);
-    const loading = new Loading({})
-  }
+    name: 'bloading',
+    bind(el, binding) {
+        const load = new Loading()
+        if (el.style.position == '' || el.style.position == 'static') {
+            el.style.position = 'relative';
+        }
+        const lel = load.$mount().$el;
+        load.loading = !!binding.value;
+        el.loadEl = lel;
+        el.appendChild(lel);
+        el.instance = load;
+    },
+    update(el, binding) {
+        if (binding.value !== binding.oldValue) {
+            el.instance.loading = !!binding.value;
+        }
+    },
+    unbind(el) {
+        console.log(111);
+        el.loadEL && el.loadEl.remove();
+        el.instance && el.instance.$destroy();
+    }
 }

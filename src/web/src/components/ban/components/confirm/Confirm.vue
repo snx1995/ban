@@ -37,7 +37,7 @@ export default {
         },
         type: {
             type: String,
-            default: 'warningr' // warning/danger/info/success
+            default: 'warning' // warning/danger/info/success
         },
         onConfirm: {
             type: Function,
@@ -58,6 +58,7 @@ export default {
             if (typeof this.onConfirm == 'function') this.onConfirm();
         },
         handleCancel() {
+            this.showContent = false;
             if (typeof this.onCancel == 'function') this.onCancel();
         }
     },

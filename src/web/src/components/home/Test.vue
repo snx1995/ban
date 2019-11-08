@@ -1,5 +1,5 @@
 <template>
-    <div class="test">
+    <div class="test" v-bloading="loading">
         <!-- <i class="fa fa-fan"></i> -->
         <BInput v-model="msg"/>
         <BButton @click="handleNewMsg">msg</BButton>
@@ -13,11 +13,15 @@ export default {
     name: "Test",
     data() {
         return {
-            msg: 'default'
+            msg: 'default',
+            loading: true
         };
     },
     mounted() {
-
+        // setTimeout(() => {
+        //     this.loading = false;
+        //     console.log(11111);
+        // }, 2000);
     },
     methods: {
         handleNewMsg() {
