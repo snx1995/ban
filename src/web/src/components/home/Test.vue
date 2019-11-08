@@ -11,6 +11,7 @@
             <BButton @click="errorHandle('error')">error</BButton>
             <BButton @click="errorHandle('auth')">auth</BButton>
             <BButton @click="errorHandle('param')">param</BButton>
+            <BButton @click="errorHandle('404')">404</BButton>
         </div>
     </div>
 </template>
@@ -61,9 +62,13 @@ export default {
             setTimeout(() => this.loading = false, 2000);
         },
         errorHandle(type) {
-            this.$net.get(`/test/errorType?type=${type}`).then(res => {
-                if (res) console.log(res);
+            let url;
+            if (type == '404') url = '/rest/a';
+            else url = `/test/errorType?type=${type}`;
+            this.$net.get(url).then(res => {
+                if (res) this.$msg.success(res.data);
             })
+
         }
     }
 };

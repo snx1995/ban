@@ -20,7 +20,6 @@ export default {
     },
     methods: {
         handleMsgClose(id) {
-            console.log('id', id);
             for (let i in this.msgs) {
                 if (this.msgs[i].id == id) {
                     this.msgs.splice(i, 1);
