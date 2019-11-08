@@ -12,6 +12,8 @@ import {Confirm} from './components/confirm';
 // directives
 import Bloading from './directives/loading';
 
+
+
 const components = {
     BButton,
     BButtonGroup,
@@ -27,10 +29,14 @@ const components = {
     BGridRow,
     BGridItem
 }
-
 const directives = {
     Bloading
 }
+const BanKit = {
+    ...components,
+    ...directives
+};
+
 
 const install = (vue, opts = {}) => {
     if (install.installed) return;
@@ -62,6 +68,7 @@ const install = (vue, opts = {}) => {
         }
 
         vue.prototype.$msg = messager;
+        BanKit.messager = messager;
 
         messager.success = message => {
             messager({
@@ -93,7 +100,5 @@ const install = (vue, opts = {}) => {
 
 if (window && window.Vue) install(window.Vue)
 
-export default {
-    ...components,
-    install
-}
+BanKit.install = install;
+export default BanKit;

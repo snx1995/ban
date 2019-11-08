@@ -1,7 +1,7 @@
 package top.ban.common;
 
 public enum ResStatus {
-    FAILED(-1, "failed"),
+    FAILED(-1, "server error"),
     SUCCEEDED(0, "success"),
     AUTH_FAILED(1, "auth failed"),
     INVALID_PARAM(2, "invalid param")

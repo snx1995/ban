@@ -5,6 +5,13 @@
         <BButton @click="handleNewMsg">msg</BButton>
         <BButton @click="handleNewConfirm">confirm</BButton>
         <BButton @click="handleLoading">loading</BButton>
+        <div>
+            <h1>Error test</h1>
+            <BButton @click="errorHandle('success')">success</BButton>
+            <BButton @click="errorHandle('error')">error</BButton>
+            <BButton @click="errorHandle('auth')">auth</BButton>
+            <BButton @click="errorHandle('param')">param</BButton>
+        </div>
     </div>
 </template>
 <script>
@@ -52,6 +59,11 @@ export default {
         handleLoading() {
             this.loading = true;
             setTimeout(() => this.loading = false, 2000);
+        },
+        errorHandle(type) {
+            this.$net.get(`/test/errorType?type=${type}`).then(res => {
+                if (res) console.log(res);
+            })
         }
     }
 };
