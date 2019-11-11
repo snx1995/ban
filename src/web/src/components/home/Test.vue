@@ -13,6 +13,9 @@
             <BButton @click="errorHandle('param')">param</BButton>
             <BButton @click="errorHandle('404')">404</BButton>
         </div>
+        <div style="width: 300px;">
+            <BProgress :value="progress" :max="100"/>
+        </div>
     </div>
 </template>
 <script>
@@ -23,7 +26,8 @@ export default {
     data() {
         return {
             msg: 'default',
-            loading: false
+            loading: false,
+            progress: 10
         };
     },
     mounted() {

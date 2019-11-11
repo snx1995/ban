@@ -6,6 +6,7 @@ import {BRadio, BRadioGroup} from './components/radio';
 import {BInput} from './components/input';
 import {BForm, BFormItem} from './components/form';
 import {BGrid, BGridRow, BGridItem} from './components/grid';
+import {BProgress} from './components/progress';
 import {BMessageContainer} from './components/message';
 import {Confirm} from './components/confirm';
 
@@ -27,7 +28,8 @@ const components = {
     BFormItem,
     BGrid,
     BGridRow,
-    BGridItem
+    BGridItem,
+    BProgress
 }
 const directives = {
     Bloading
