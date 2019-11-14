@@ -60,9 +60,9 @@ export default {
         }
     },
     mounted() {
-        // this.$net.post('/test/uploadArticle', this.article).then(res => {
-        //     console.log(res);
-        // })
+        this.$net.post('/test/uploadArticle', this.article).then(res => {
+            console.log(res);
+        })
     }
 }
 </script>

@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-    name: 'progress',
+    name: 'BProgress',
     props: {
         value: {
             type: Number,
