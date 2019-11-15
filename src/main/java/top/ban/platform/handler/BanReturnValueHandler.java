@@ -1,6 +1,7 @@
 package top.ban.platform.handler;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,8 @@ public class BanReturnValueHandler extends RequestResponseBodyMethodProcessor {
 
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
-        if (!(returnValue instanceof ReqResult)) {
+        
+        if (!(returnValue instanceof ResponseEntity) && !(returnValue instanceof ReqResult)) {
             returnValue = new ReqResult().succeeded(returnValue);
         }
         super.handleReturnValue(returnValue, returnType, mavContainer, webRequest);

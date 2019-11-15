@@ -27,6 +27,7 @@ new Vue({
 function initAxios() {
     axios.defaults.baseURL = '/rest';
     axios.interceptors.response.use(response => {
+        console.log(response);
         if (response.status < 300) {
             if (response.data) {
                 const data = response.data;
@@ -47,6 +48,10 @@ function initAxios() {
                 return false;
             }
             else throw new Error(response.data && response.data.msg);
-        } else return response;
+        } else {
+            Ban.messager.error(response.data.statusCode);
+        }
+    }, error => {
+        Ban.messager.error(error.message);
     })
 }

@@ -1,33 +1,56 @@
 <template>
     <div class="test" v-bloading="loading">
-        <!-- <i class="fa fa-fan"></i> -->
-        <BInput v-model="msg"/>
-        <BButton @click="handleNewMsg">msg</BButton>
-        <BButton @click="handleNewConfirm">confirm</BButton>
-        <BButton @click="handleLoading">loading</BButton>
-        <div>
-            <h1>Error test</h1>
-            <BButton @click="errorHandle('success')">success</BButton>
-            <BButton @click="errorHandle('error')">error</BButton>
-            <BButton @click="errorHandle('auth')">auth</BButton>
-            <BButton @click="errorHandle('param')">param</BButton>
-            <BButton @click="errorHandle('404')">404</BButton>
-        </div>
-        <div style="width: 300px;">
-            <BProgress :value="progress" :max="100"/>
-        </div>
+        <BTable :colsDef="colsDef" :data="data">
+            <template v-slot:memo="row">
+                <span style="color: red">{{row.memo}}</span>
+            </template>
+        </BTable>
     </div>
 </template>
 <script>
+import ComponentTest from './ComponentTest';
 let count = 0;
-import axios from "axios";
 export default {
     name: "Test",
+    components: {
+        ComponentTest
+    },
     data() {
         return {
             msg: 'default',
             loading: false,
-            progress: 10
+            progress: 10,
+            colsDef: [
+                {
+                    type: 'selection'
+                },
+                {
+                    type: 'index',
+                    title: 'index'
+                },
+                {
+                    title: 'title',
+                    key: 'title'
+                },
+                {
+                    type: 'render',
+                    title: 'render',
+                    render(h, row) {
+                        return h('h1', row.name);
+                    }
+                },
+                {
+                    title: 'slot',
+                    type: 'slot',
+                    slot: 'memo'
+                }
+            ],
+            data: [
+                {title: 't1', name: 'n1', memo: 'test1'},
+                {title: 't2', name: 'n2', memo: 'test2'},
+                {title: 't3', name: 'n3', memo: 'test3'},
+                {title: 't4', name: 'n4', memo: 'test4'}
+            ]
         };
     },
     mounted() {

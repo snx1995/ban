@@ -7,8 +7,10 @@ import {BInput} from './components/input';
 import {BForm, BFormItem} from './components/form';
 import {BGrid, BGridRow, BGridItem} from './components/grid';
 import {BProgress} from './components/progress';
+import {BTable} from './components/table';
 import {BMessageContainer} from './components/message';
 import {Confirm} from './components/confirm';
+
 
 // directives
 import Bloading from './directives/loading';
@@ -29,7 +31,8 @@ const components = {
     BGrid,
     BGridRow,
     BGridItem,
-    BProgress
+    BProgress,
+    BTable
 }
 const directives = {
     Bloading

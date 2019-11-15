@@ -18,7 +18,7 @@ export default {
 body, html {
     width: 100%;
     height: 100%;
-    background-image: url('../static/imgs/bg.jpg');
+    /* background-image: url('../static/imgs/bg.jpg'); */
     background-size: 100%;
     background-attachment: fixed;
 }
