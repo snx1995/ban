@@ -1,6 +1,6 @@
 <template>
     <div class="test" v-bloading="loading">
-        <BTable :colsDef="colsDef" :data="data">
+        <BTable :colsDef="colsDef" :data="data" footer>
             <template v-slot:memo="row">
                 <span style="color: red">{{row.memo}}</span>
             </template>
@@ -22,7 +22,8 @@ export default {
             progress: 10,
             colsDef: [
                 {
-                    type: 'selection'
+                    type: 'selection',
+                    width: '50'
                 },
                 {
                     type: 'index',
