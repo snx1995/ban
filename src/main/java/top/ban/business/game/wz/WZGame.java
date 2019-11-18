@@ -31,9 +31,9 @@ public class WZGame {
         this.pc = new HashMap<>();
         this.cp = new ArrayList<>(10);
         ChessPieceIds[] ids = ChessPieceIds.values();
-        for (int i = 0;i < 10;i ++) {
-            this.pc.put(, ids[i]);
-        }
+        // for (int i = 0;i < 10;i ++) {
+        //     this.pc.put(, ids[i]);
+        // }
     }
 
     public void syncGameState() {
