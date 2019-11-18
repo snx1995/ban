@@ -12,6 +12,10 @@ public class WZGameTest {
         }
     }
 
+    void readCmd() {
+        
+    }
+
     public static void main(String[] args) {
         WZGameTest test = new WZGameTest();
         test.printChessboard();
