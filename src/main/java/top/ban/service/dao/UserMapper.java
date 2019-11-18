@@ -1,4 +1,4 @@
-package top.ban.business.dao;
+package top.ban.service.dao;
 
 import org.springframework.stereotype.Repository;
 import top.ban.common.entity.vo.user.LoginParam;

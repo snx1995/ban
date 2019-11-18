@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import top.ban.business.dao.UserMapper;
+import top.ban.service.dao.UserMapper;
 import top.ban.common.AuthorityLevel;
 import top.ban.common.ResStatus;
 import top.ban.common.entity.vo.user.LoginParam;
