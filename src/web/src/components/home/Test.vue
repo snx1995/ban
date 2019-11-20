@@ -1,10 +1,14 @@
 <template>
     <div class="test" v-bloading="loading">
-        <BTable :colsDef="colsDef" :data="data" footer>
-            <template v-slot:memo="row">
-                <span style="color: red">{{row.memo}}</span>
-            </template>
-        </BTable>
+<!--        <BTable :colsDef="colsDef" :data="data" footer>-->
+<!--            <template v-slot:memo="row">-->
+<!--                <span style="color: red">{{row.memo}}</span>-->
+<!--            </template>-->
+<!--        </BTable>-->
+      <form action="/rest/resource/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit">
+      </form>
     </div>
 </template>
 <script>
