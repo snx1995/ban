@@ -5,9 +5,9 @@ spring.datasource.username=root
 spring.datasource.password=xxxxxxxxx
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 mybatis.mapper-locations=classpath:mapper/*Mapper.xml
-mybatis.type-handlers-package=top.ban.platform.handler.type
-mybatis.type-aliases-package=top.ban.common.entity
-logging.level.top.ban.business.dao=debug
+mybatis.type-handlers-package=art.banyq.platform.handler.type
+mybatis.type-aliases-package=art.banyq.common.entity
+logging.level.art.banyq.business.dao=debug
 
 #system.properties
 token.password=xxxxxxxxx

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="top.ban.business.dao.TestDao">
+<mapper namespace="art.banyq.business.dao.TestDao">
 
-    <select id="selectById" parameterType="Integer" resultType="top.ban.common.entity.vo.TestVO">
+    <select id="selectById" parameterType="Integer" resultType="art.banyq.common.entity.vo.TestVO">
         SELECT * FROM test where id = #{id}
     </select>
 </mapper>
