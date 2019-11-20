@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Import(BanConfig.class)
 @SpringBootApplication
-@MapperScan(value = "art.banyq.service.dao", annotationClass = Repository.class)
+@MapperScan(value = "art.banyq.persistent.dao", annotationClass = Repository.class)
 class Application extends WebMvcAutoConfiguration {
 
     public static void main(String[] args) {

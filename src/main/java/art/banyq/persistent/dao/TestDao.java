@@ -1,4 +1,4 @@
-package art.banyq.service.dao;
+package art.banyq.persistent.dao;
 
 import org.springframework.stereotype.Repository;
 import art.banyq.common.entity.vo.TestVO;

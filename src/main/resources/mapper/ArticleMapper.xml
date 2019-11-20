@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="art.banyq.persistent.dao.ArticleDAO">
+    <sql id="article_columns">
+        background, title, a1_title, a1_subtitle, a1_body, a1_cover, a2_title, a2_subtitle, a2_img1, 
+        a2_img2, a2_img3, a2_img4, a3_title1, a3_title2, a3_title3, a3_body1, a3_body2, a3_body3, 
+        a3_img1, a3_img2, a3_img3, upload_date, update_date
+    </sql>
+    <select id="select" parameterType="Integer" resultType="ArticlePO">
+        select * from www_article where id = #{id}
+    </select>
+</mapper>

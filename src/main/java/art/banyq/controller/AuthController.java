@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import art.banyq.service.dao.UserMapper;
+import art.banyq.persistent.dao.UserDAO;
 import art.banyq.common.AuthorityLevel;
 import art.banyq.common.ResStatus;
 import art.banyq.common.entity.vo.user.LoginParam;
@@ -18,11 +18,11 @@ import art.banyq.platform.authority.UserTokenService;
 @RequestMapping("/auth")
 public class AuthController {
     private UserTokenService tokenService;
-    private UserMapper userMapper;
+    private UserDAO userDAO;
 
-    public AuthController(UserTokenService tokenService, UserMapper userMapper) {
+    public AuthController(UserTokenService tokenService, UserDAO userDAO) {
         this.tokenService = tokenService;
-        this.userMapper = userMapper;
+        this.userDAO = userDAO;
     }
 
     @PostMapping("/login")
@@ -40,7 +40,7 @@ public class AuthController {
     @Transactional
     @PostMapping("/register")
     public RegisterParam register(@RequestBody RegisterParam param) {
-        int count = userMapper.insertUser(param);
+        int count = userDAO.insertUser(param);
         if (count != 1) throw new Error();
         return param;
     }
