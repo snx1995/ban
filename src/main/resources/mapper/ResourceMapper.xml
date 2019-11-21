@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="art.banyq.persistent.dao.ResourceDAO">
+    <select id="select" parameterType="Integer" resultType="ResourcePO">
+        select * from www_resource where id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="ResourcePO">
+        insert into www_resource (name, path, upload_user, upload_date) values
+        (#{name}, #{path}, #{upload_user}, NOW())
+    </insert>
+</mapper>

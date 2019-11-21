@@ -4,7 +4,8 @@ public enum ResStatus {
     FAILED(-1, "server error"),
     SUCCEEDED(0, "success"),
     AUTH_FAILED(1, "auth failed"),
-    INVALID_PARAM(2, "invalid param")
+    INVALID_PARAM(2, "invalid param"),
+    NOT_FOUND(3, "data not found")
     ;
 
     private int code;

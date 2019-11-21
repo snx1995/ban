@@ -20,7 +20,7 @@ initAxios();
 new Vue({
     el: '#app',
     router,
-    components: { App },
+    components: {App},
     template: '<App/>'
 });
 
@@ -34,20 +34,18 @@ function initAxios() {
                 switch (data.code) {
                     case -1:
                         Ban.messager.error(`${data.msg} -> ${data.data}`);
-                    break;
+                        break;
                     case 0:
                         return response.data;
-                    break;
                     case 1:
                         Ban.messager.error('用户验证失败，请重新登陆!');
-                    break;
+                        break;
                     case 2:
                         Ban.messager.error(`参数错误 -> ${data.data}`);
-                    break;
+                        break;
                 }
                 return false;
-            }
-            else throw new Error(response.data && response.data.msg);
+            } else throw new Error(response.data && response.data.msg);
         } else {
             Ban.messager.error(response.data.statusCode);
         }
