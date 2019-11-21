@@ -1,5 +1,7 @@
 package art.banyq.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +28,10 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public UserVO login(@RequestBody LoginParam param) {
+    public UserVO login(@RequestBody LoginParam param, HttpServletResponse response) {
         if ("exception".equals(param.getAccount())) throw new ReqHandleException(ResStatus.AUTH_FAILED);
-        UserVO user = new UserVO();
-        user.setAuthLv(AuthorityLevel.SUPER_ADMIN);
-        user.setName(param.getAccount());
-        user.setVersion(0);
-        user.setId("banyq");
-        user.setToken(tokenService.encode("banyq", AuthorityLevel.SUPER_ADMIN, 0).toString());
+        UserVO user = userDAO.selectIdPassword(param);
+        response.setHeader("Set-Token", tokenService.encode(user.getId(), user.getAuthLv(), user.getVersion()).toString());
         return user;
     }
 

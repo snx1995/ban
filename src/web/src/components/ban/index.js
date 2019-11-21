@@ -10,10 +10,10 @@ import {BProgress} from './components/progress';
 import {BTable} from './components/table';
 import {BMessageContainer} from './components/message';
 import {Confirm} from './components/confirm';
-
+import {BImage, BAudio, BIcon, BVideo, BUpload} from './components/resource';
 
 // directives
-import Bloading from './directives/loading';
+import BLoading from './directives/loading';
 
 
 
@@ -32,11 +32,16 @@ const components = {
     BGridRow,
     BGridItem,
     BProgress,
-    BTable
-}
+    BTable,
+    BImage,
+    BAudio,
+    BIcon,
+    BVideo,
+    BUpload
+};
 const directives = {
-    Bloading
-}
+    BLoading
+};
 const BanKit = {
     ...components,
     ...directives
@@ -47,19 +52,19 @@ const install = (vue, opts = {}) => {
     if (install.installed) return;
     Object.keys(components).forEach(key => {
         vue.component(key, components[key])
-    })
+    });
 
     Object.keys(directives).forEach(key => {
         const directive = directives[key];
         vue.directive(directive.name, directive);
-    })
-    
+    });
+
     vue.prototype.$confirm = Confirm;
     vue.prototype.$ban = {
         changeTheme(theme) {
-            
+
         }
-    }
+    };
 
     initMessageContainer();
 
@@ -80,30 +85,30 @@ const install = (vue, opts = {}) => {
                 type: 'success',
                 message
             })
-        }
+        };
         messager.warning = message => {
             messager({
                 type: 'warning',
                 message
             })
-        }
+        };
         messager.info = message => {
             messager({
                 type: 'info',
                 message
             })
-        }
+        };
         messager.error = message => {
             messager({
                 type: 'error',
                 message
             })
-        }
+        };
         document.body.appendChild(mc.$mount().$el);
     }
-}
+};
 
-if (window && window.Vue) install(window.Vue)
+if (window && window.Vue) install(window.Vue);
 
 BanKit.install = install;
 export default BanKit;

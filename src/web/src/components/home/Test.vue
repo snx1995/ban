@@ -5,21 +5,25 @@
         <!--                <span style="color: red">{{row.memo}}</span>-->
         <!--            </template>-->
         <!--        </BTable>-->
-        <form action="/rest/resource/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit">
-        </form>
-        <img src="/rest/resource/get?id=3" alt="">
+        <BUpload />
+        <div style="width: 200px;">
+            <BImage :imgId="3"/>
+        </div>
+        <div style="width: 200px;">
+            <BImage :imgId="4"/>
+        </div>
+        <div style="width: 200px;">
+            <BImage :imgId="3"/>
+        </div>
+        <div style="width: 200px;">
+            <BImage :imgId="4"/>
+        </div>
     </div>
 </template>
 <script>
-    import ComponentTest from './ComponentTest';
     let count = 0;
     export default {
         name: "Test",
-        components: {
-            ComponentTest
-        },
         data() {
             return {
                 msg: 'default',

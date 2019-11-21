@@ -25,9 +25,17 @@ new Vue({
 });
 
 function initAxios() {
+    const Config = {
+        token: ''
+    };
     axios.defaults.baseURL = '/rest';
+    axios.interceptors.request.use(config => {
+        console.log(config);
+    })
     axios.interceptors.response.use(response => {
-        console.log(response);
+        if (response.headers['Set-Token']) {
+            Config.token = response.headers['Set-Token'];
+        }
         if (response.status < 300) {
             if (response.data) {
                 const data = response.data;
