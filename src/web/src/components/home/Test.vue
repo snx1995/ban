@@ -10,13 +10,7 @@
             <BImage :imgId="3"/>
         </div>
         <div style="width: 200px;">
-            <BImage :imgId="4"/>
-        </div>
-        <div style="width: 200px;">
-            <BImage :imgId="3"/>
-        </div>
-        <div style="width: 200px;">
-            <BImage :imgId="4"/>
+            <BVideo :resourceId="27"/>
         </div>
     </div>
 </template>

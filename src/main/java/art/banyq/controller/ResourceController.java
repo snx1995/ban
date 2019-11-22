@@ -30,7 +30,7 @@ public class ResourceController {
     }
 
     @PostMapping("/upload")
-    @AuthLV(AuthorityLevel.ADMIN)
+    // @AuthLV(AuthorityLevel.ADMIN)
     public List<ResourcePO> upload(MultipartFile[] files) {
         List<ResourcePO> result = new ArrayList<>(files.length);
         for (MultipartFile file : files) {
@@ -45,7 +45,8 @@ public class ResourceController {
             resource.setPath(localFile.getAbsolutePath());
             resource.setUpload_user(1);
             result.add(resource);
-            assert resourceDAO.insert(resource) == 1 : "database insert failed!";
+            // assert resourceDAO.insert(resource) == 1 : "database insert failed!";
+            resourceDAO.insert(resource);
             try {
                 file.transferTo(localFile);
             } catch (Exception e) {

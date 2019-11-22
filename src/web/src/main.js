@@ -31,6 +31,7 @@ function initAxios() {
     axios.defaults.baseURL = '/rest';
     axios.interceptors.request.use(config => {
         console.log(config);
+        return config;
     })
     axios.interceptors.response.use(response => {
         if (response.headers['Set-Token']) {
