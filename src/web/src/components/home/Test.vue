@@ -5,12 +5,16 @@
         <!--                <span style="color: red">{{row.memo}}</span>-->
         <!--            </template>-->
         <!--        </BTable>-->
-        <BUpload />
-        <div style="width: 200px;">
-            <BImage :imgId="3"/>
-        </div>
-        <div style="width: 200px;">
-            <BVideo :resourceId="27"/>
+        <div class="center">
+            <div style="width: 600px;">
+                <BUpload />
+            </div>
+            <div style="width: 200px;">
+                <BImage :imgId="3"/>
+            </div>
+            <div style="width: 200px;">
+                <BVideo :resourceId="27"/>
+            </div>
         </div>
     </div>
 </template>
@@ -104,16 +108,21 @@
         }
     };
 </script>
-<style scoped>
+<style scoped lang="less">
     .fa-fan {
         font-size: 64px;
         color: white;
         animation: rotate 1s infinite linear;
     }
-
     .test {
         background-color: #fff;
         padding: 100px 0;
         text-align: left;
+        .center {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 </style>

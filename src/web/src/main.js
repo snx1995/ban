@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import axios from 'axios';
+import utils from './utils';
 
 import VueDraggable from 'vuedraggable';
 import Ban from './components/ban'
@@ -14,6 +15,7 @@ Vue.component('VueDraggable', VueDraggable);
 Vue.config.productionTip = false;
 
 Vue.prototype.$net = axios;
+Vue.prototype.$utils = utils;
 
 initAxios();
 /* eslint-disable no-new */

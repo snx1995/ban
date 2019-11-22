@@ -57,27 +57,24 @@ public class ResourceController {
     }
 
     @GetMapping("/get")
-    public void img(Integer id, HttpServletRequest request, HttpServletResponse response) {
+    public void img(Integer id, HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
         response.setCharacterEncoding(request.getCharacterEncoding());
         ResourcePO resource = resourceDAO.select(id);
         File file = new File(resource.getPath());
-        if (!file.exists()) throw new ReqHandleException(ResStatus.NOT_FOUND, "resource does not exists");
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(file);
-            response.setHeader("Content-Disposition", "attachment; filename=" + resource.getName());
-            IOUtils.copy(fis, response.getOutputStream());
-            response.flushBuffer();
-        } catch (Exception e) {
-            throw new ReqHandleException(ResStatus.FAILED, e.getMessage());
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (!file.exists()) {
+            response.sendError(404);
+            return;
+        }
+        FileInputStream fis = new FileInputStream(file);
+        response.setHeader("Content-Disposition", "attachment; filename=" + resource.getName());
+        IOUtils.copy(fis, response.getOutputStream());
+        response.flushBuffer();
+        if (fis != null) {
+            try {
+                fis.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
