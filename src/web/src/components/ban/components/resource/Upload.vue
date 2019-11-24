@@ -50,17 +50,21 @@
                 const formData = new FormData();
                 console.log(this.fileList)
                 this.loading = true;
-                setTimeout(() => {
-                    this.loading = false;
-                }, 2000);
-                // if (this.fileList.length > 0) {
-                //     this.fileList.forEach(e => {
-                //         formData.append('files', e);
-                //     })
-                //     this.$net.post('/resource/upload', formData).then(res => {
-                //         console.log(res);
-                //     })
-                // }
+                // setTimeout(() => {
+                //     this.loading = false;
+                // }, 5000);
+                if (this.fileList.length > 0) {
+                    this.fileList.forEach(e => {
+                        formData.append('files', e);
+                    })
+                    this.$net.post('/resource/upload', formData).then(res => {
+                        console.log(res);
+                        this.loading = false;
+                    }).catch(err => {
+                        this.loading = false;
+                        this.$msg.error(err);
+                    })
+                }
             },
             handleAddFileClick() {
                 this.$refs.filesInput.click();

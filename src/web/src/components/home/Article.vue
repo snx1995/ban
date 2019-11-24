@@ -73,6 +73,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .article {
+    position: relative;
     width: 100%;
     .style {
         width: 100%;
@@ -82,9 +83,14 @@ export default {
         &.style-0 {
             .slogan {
                 width: 100%;
-                max-height: 350px;
+                height: 350px;
                 overflow: hidden;
+                position: relative;
                 img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                     width: 100%;
                 }
             }

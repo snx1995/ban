@@ -1,5 +1,5 @@
 <template>
-    <div class="b-file-item" :class="[theme, type]">
+    <div class="b-file-item" :class="[type]">
         <div class="content">
             <div class="file-content">
                 <i :class="iconClass" class="file-icon"></i>
@@ -109,6 +109,7 @@ export default {
         padding: 10px;
         transition: box-shadow .3s;
         border-radius: 5px;
+        margin: 7px 2px;
         .content {
             width: 100%;
         }

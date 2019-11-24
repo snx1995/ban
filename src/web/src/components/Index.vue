@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-        <div class="content">
+        <div class="content" :class="{mobile: isMobile}">
             <div class="header">
                 <img src="../../static/imgs/logo.png" alt="">
             </div>
@@ -23,11 +23,10 @@ export default {
 
         }
     },
-    mounted() {
-        this.$msg.success('success');
-        this.$msg.info('info');
-        this.$msg.warning('warning');
-        this.$msg.error('error');
+    methods: {
+        isMobile() {
+           return navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i); 
+        }
     }
 }
 </script>
@@ -40,6 +39,12 @@ export default {
         min-width: 800px;
         margin: 0 auto;
         padding-bottom: 50px;
+        &.mobile {
+            width: 100%;
+            height: 100%;
+            max-width: unset;
+            min-width: unset;
+        }
         .header {
             padding-top: 50px;
             width: 100%;
