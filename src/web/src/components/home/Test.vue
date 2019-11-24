@@ -9,12 +9,6 @@
             <div style="width: 600px;">
                 <BUpload />
             </div>
-            <div style="width: 200px;">
-                <BImage :imgId="3"/>
-            </div>
-            <div style="width: 200px;">
-                <BVideo :resourceId="27"/>
-            </div>
         </div>
     </div>
 </template>

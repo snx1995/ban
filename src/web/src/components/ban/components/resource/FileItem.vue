@@ -1,12 +1,15 @@
 <template>
     <div class="b-file-item" :class="[theme, type]">
-        <div class="file-content">
-            <i :class="iconClass"></i>
-            <span class="file-name">{{file.name}}</span>
-        </div>
-        <div class="file-info">
-            <span class="file-size">{{fileSize}}</span>
-            <span class="file-date">{{new Date(file.lastModified).format('yyyy-MM-dd hh-mm')}}</span>
+        <div class="content">
+            <div class="file-content">
+                <i :class="iconClass" class="file-icon"></i>
+                <span class="file-name" :title="file.name">{{file.name}}</span>
+                <i class="icon-cancel-circle file-remove" @click="$emit('remove')"></i>
+            </div>
+            <div class="file-info">
+                <span class="file-size">{{fileSize}}</span>
+                <span class="file-date">{{new Date(file.lastModified).format('yyyy-MM-dd hh-mm')}}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -15,10 +18,6 @@ const fileSizeUnit = 'BKMG';
 export default {
     name: 'BFileItem',
     props: {
-        theme: {
-            type: String,
-            default: 'default'
-        },
         type: {
             type: String,
             default: 'card'
@@ -52,47 +51,122 @@ export default {
                 if (size < 1024) return size.toFixed(2) + fileSizeUnit.charAt(i);
                 size /= 1024;
             }
+            return size.toFixed(2) + 'G';
         }
     }
 }
 </script>
 <style lang="less" scoped>
 .b-file-item {
-    &.default {
-        @h: 80px;
+    @h: 80px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    .file-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        .file-icon {
+            font-size: 2em;
+        }
+        .file-name {
+            cursor: default;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: 10px;
+        }
+        .file-remove {
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+    }
+    .file-info {
+        margin-top: 10px;
+        > span {
+            display: inline-block;
+            font-size: 10px;
+            color: white;
+        }
+        .file-size {
+            background-color: @info;
+            padding: 2px 4px;
+            border-radius: 5px;
+        }
+        .file-date {
+            margin-left: 5px;
+            background-color: @red;
+            padding: 2px 4px;
+            border-radius: 5px;
+        }
+    }
+    &.card {
         .borderBox();
-        width: 190px;
+        width: 180px;
         height: @h;
-        // line-height: @h;
-        // margin: 10px;
         padding: 10px;
         transition: box-shadow .3s;
         border-radius: 5px;
-        &:hover {
-            box-shadow: 0 12px 24px rgba(7, 17, 27, .3);
-            border: none;
+        .content {
+            width: 100%;
         }
         .file-content {
-            i {
-                font-size: 2em;
-            }
             .file-name {
-                display: inline-block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 120px;
+                max-width: 110px;
             }
         }
-        .file-info {
-            margin-top: 10px;
-            > span {
-                display: inline-block;
-                height: 1.2em;
-                line-height: 1.2em;
-                font-size: 12px;
+        &:hover {
+            box-shadow: 0 6px 12px rgba(7, 17, 27, .3);
+            border: none;
+            .file-remove {
+                opacity: 1;
             }
         }
+    }
+    &.list {
+        width: 100%;
+        height: @h;
+        padding-right: 20px;
+        border-bottom: 1px dashed @fontColorGrey;
+        transition: filter .3s;
+        .content {
+            .borderBox();
+            width: 100%;
+            .file-content {
+                display: flex;
+                justify-content: space-between;
+                flex-grow: 1;
+                .file-name {
+                    flex-grow: 1;
+                }
+            }
+        }
+        &:hover {
+            filter: brightness(.9);
+            .file-remove {
+                opacity: 1;
+            }
+        }
+    }
+    .icon-drive {
+        color: @blue;
+    }
+    .icon-file-zip {
+        color: @orange;
+    }
+    .icon-file-picture {
+        color: @green;
+    }
+    .icon-file-video {
+        color: @gblue;
+    }
+    .icon-file-music {
+        color: @yellow;
+    }
+    .icon-file-empty {
+        color: @dark;
     }
 }
 </style>

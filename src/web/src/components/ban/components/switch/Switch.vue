@@ -63,7 +63,7 @@ export default {
         position: relative;
         background-color: @ghost;
         transition: background-color .3s;
-        margin: 5px 0;
+        // margin: 5px 0;
         &.sm {
             border-radius: 10px;
             height: 15px;
