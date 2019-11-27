@@ -1,1 +1,9 @@
-node_modules
+.idea
+.settings
+.vscode
+.classpath
+.project
+target
+**/*DS_Store
+._*
+**/node_modules
