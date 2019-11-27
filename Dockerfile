@@ -1,4 +1,5 @@
-FROM java:8
-ADD target/ban.jar app.jar
+FROM maven
+COPY . /app
+WORKDIR /app
 EXPOSE 10080
-CMD java -jar app.jar
+CMD mvn clean package & java -jar target/ban.jar
