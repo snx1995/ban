@@ -14,11 +14,11 @@ export default {
     data() {
         return {
             article: {
-                bg: '../../static/imgs/1.JPG',
+                bg: '../../static/imgs/1.jpg',
                 art0: {
                     style: 0,
                     data: {
-                        slogen: '../../static/imgs/1.JPG',
+                        slogen: '../../static/imgs/1.jpg',
                         title: '啊啊啊啊啊啊啊啊啊啊啊',
                         subTitle: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
                         body: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
@@ -28,8 +28,8 @@ export default {
                     style: 1,
                     data: {
                         img: [
-                            '../../static/imgs/4.JPG',
-                            '../../static/imgs/2.JPG',
+                            '../../static/imgs/4.jpg',
+                            '../../static/imgs/2.jpg',
                             '../../static/imgs/9.JPG',
                             '../../static/imgs/8.JPG'
                         ],
