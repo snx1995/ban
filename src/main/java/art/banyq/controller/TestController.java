@@ -38,4 +38,9 @@ public class TestController {
         }
         return "Succeeded";
     }
+
+    @GetMapping("/isAlive")
+    public Object isAlive(String msg) {
+        return "Yes! [" + msg + "]";
+    }
 }
