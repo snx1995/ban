@@ -1,5 +1,5 @@
 FROM maven
-COPY . /app
+COPY ./target/ban.jar /app/app.jar
 WORKDIR /app
-EXPOSE 10080
-CMD mvn clean package & java -jar target/ban.jar
+RUN jav -jar app.jar
+EXPOSE 8080
