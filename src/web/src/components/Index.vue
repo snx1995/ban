@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-        <div class="content" :class="{mobile: isMobile}">
+        <div class="content">
             <div class="header">
                 <img src="../../static/imgs/logo.png" alt="">
             </div>
