@@ -1,5 +1,5 @@
 <template>
-    <article class="article">
+    <article class="article" :class="[$isMobile ? 'mobile' : 'not-mobile']">
         <section  v-for="(art, index) in article" :key="index">
             <div class="style style-0" v-if="art.style == 0">
                 <div class="slogan">
@@ -72,6 +72,34 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.mobile {
+    .style-0 {
+        .slogan {
+            width: 100vw;
+            height: 20vh;
+        }
+    }
+    .style-1 {
+        padding: 2vh;
+        p {
+            padding-top: 2vh;
+        }
+    }
+}
+.not-mobile {
+    .style-0 {
+        .slogan {
+            width: 100%;
+            height: 350px;
+        }
+    }
+    .style-1 {
+        padding: 100px;
+        p {
+            padding-top: 50px;
+        }
+    }
+}
 .article {
     position: relative;
     width: 100%;
@@ -82,8 +110,6 @@ export default {
         }
         &.style-0 {
             .slogan {
-                width: 100%;
-                height: 350px;
                 overflow: hidden;
                 position: relative;
                 img {
@@ -114,7 +140,6 @@ export default {
         &.style-1 {
             .borderBox();
             background-color: @fontBGDark;
-            padding: 100px;
             .content {
                 width: 100%;
                 display: flex;
@@ -128,9 +153,8 @@ export default {
                 }
             }
             p {
-                padding-top: 50px;
                 color: @fontColorGrey;
-                text-indent: 1em;
+                // text-indent: 1em;
             }
         }
         &.style-2 {

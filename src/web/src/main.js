@@ -16,6 +16,7 @@ Vue.config.productionTip = false;
 
 Vue.prototype.$net = axios;
 Vue.prototype.$utils = utils;
+Vue.prototype.$isMobile = isMobile()
 
 initAxios();
 /* eslint-disable no-new */
@@ -63,4 +64,8 @@ function initAxios() {
     }, error => {
         Ban.messager.error(error.message);
     })
+}
+
+function isMobile() {
+    return navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i); 
 }

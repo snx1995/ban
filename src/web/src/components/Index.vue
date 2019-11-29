@@ -1,5 +1,5 @@
 <template>
-    <div class="index">
+    <div class="index" :class="[$isMobile ? 'mobile' : 'not-mobile']">
         <div class="content">
             <div class="header">
                 <img src="../../static/imgs/logo.png" alt="">
@@ -22,16 +22,11 @@ export default {
         return {
 
         }
-    },
-    methods: {
-        isMobile() {
-           return navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i); 
-        }
     }
 }
 </script>
 <style lang="less" scoped>
-.index {
+.index.not-mobile {
     width: 100%;
     .content {
         width: 80%;
@@ -39,12 +34,6 @@ export default {
         min-width: 800px;
         margin: 0 auto;
         padding-bottom: 50px;
-        &.mobile {
-            width: 100%;
-            height: 100%;
-            max-width: unset;
-            min-width: unset;
-        }
         .header {
             padding-top: 50px;
             width: 100%;
@@ -62,6 +51,18 @@ export default {
         height: 200px;
         background-color: @fontBGDark;
 
+    }
+}
+.mobile {
+    width: 100vw;
+    .content {
+        width: 100vw;
+        .header {
+            img {
+                margin-top: 5vh;
+                width: 80vw;
+            }
+        }
     }
 }
 </style>
