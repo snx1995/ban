@@ -19,7 +19,7 @@ export default {
                     style: 0,
                     data: {
                         slogen: '../../static/imgs/1.jpg',
-                        title: '啊啊啊啊啊啊啊啊啊啊啊',
+                        title: '那些最美的时光',
                         subTitle: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
                         body: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
                     }
