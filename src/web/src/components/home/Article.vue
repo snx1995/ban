@@ -84,7 +84,7 @@ export default {
                 font-size: 40rem;
             }
             .subtitle {
-                font-size: 12rem;
+                font-size: 14rem;
             }
         }
         p {

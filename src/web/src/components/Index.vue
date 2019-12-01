@@ -50,7 +50,6 @@ export default {
         width: 100%;
         height: 200px;
         background-color: @fontBGDark;
-
     }
 }
 .mobile {
@@ -63,6 +62,12 @@ export default {
                 width: 80vw;
             }
         }
+    }
+    footer {
+        margin-top: 5vh;
+        width: 100%;
+        height: 15vh;
+        background-color: @fontBGDark;
     }
 }
 </style>

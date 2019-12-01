@@ -19,7 +19,7 @@ export default {
     margin: 0;
 }
 body * {
-    font-size: 14rem;
+    font-size: 12rem;
 }
 body, html {
     width: 100%;
