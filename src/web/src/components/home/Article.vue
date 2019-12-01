@@ -6,8 +6,8 @@
                     <img :src="art.data.slogen">
                 </div>
                 <div class="title-content">
-                    <h1>{{art.data.title}}</h1>
-                    <h3>{{art.data.subTitle}}</h3>
+                    <h1 class="title">{{art.data.title}}</h1>
+                    <h4 class="subtitle">{{art.data.subTitle}}</h4>
                 </div>
                 <p>{{art.data.body}}</p>
             </div>
@@ -78,11 +78,32 @@ export default {
             width: 100vw;
             height: 20vh;
         }
+        .title-content {
+            padding: 5vw;
+            .title {
+                font-size: 40rem;
+            }
+            .subtitle {
+                font-size: 12rem;
+            }
+        }
+        p {
+            padding: 5vw;
+        }
     }
     .style-1 {
         padding: 2vh;
         p {
             padding-top: 2vh;
+        }
+    }
+    .style-2 {
+        .text-content {
+            padding: 2vw;
+            h1 {
+                padding-bottom: 2vh;
+                font-size: 28rem;
+            }
         }
     }
 }
@@ -92,11 +113,35 @@ export default {
             width: 100%;
             height: 350px;
         }
+        .title-content {
+            .title {
+                height: 100px;
+                line-height: 100px;
+            }
+            .title {
+                font-size: 40px;
+            }
+            .subtitle {
+                font-size: 12px;
+            }
+        }
+        p {
+            padding: 40px;
+        }
     }
     .style-1 {
         padding: 100px;
         p {
             padding-top: 50px;
+        }
+    }
+    .style-2 {
+        .text-content {
+            padding: 30px;
+            h1 {
+                padding: 20px 0;
+                font-size: 36px;
+            }
         }
     }
 }
@@ -122,16 +167,15 @@ export default {
             }
             .title-content {
                 background: #fff;
-                height: 150px;
-                h1 {
+                .title {
                     .borderBox();
-                    height: 100px;
-                    line-height: 100px;
                     font-size: 40rem;
+                }
+                .subtitle {
+                    color: @fontColorGrey;
                 }
             }
             p {
-                padding: 40px;
                 text-align: center;
                 background-color: @fontBGLight;
                 color: @fontColorDarkGrey;
@@ -175,11 +219,6 @@ export default {
                         .borderBox();
                         width: 100%;
                         height: 100%;
-                        padding: 30px;
-                        h1 {
-                            font-size: 36rem;
-                            padding: 20px 0;
-                        }
                     }
                     img {
                         width: 100%;
