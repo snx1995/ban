@@ -127,7 +127,7 @@ export default {
                     .borderBox();
                     height: 100px;
                     line-height: 100px;
-                    font-size: 40px;
+                    font-size: 40rem;
                 }
             }
             p {
@@ -177,7 +177,7 @@ export default {
                         height: 100%;
                         padding: 30px;
                         h1 {
-                            font-size: 1.5em;
+                            font-size: 36rem;
                             padding: 20px 0;
                         }
                     }

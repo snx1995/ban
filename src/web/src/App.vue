@@ -1,11 +1,14 @@
 <template>
-    <div id="app" :class="{mobile: isMobile}">
+    <div id="app">
         <router-view/>
     </div>
 </template>
 <script>
 export default {
-    name: 'App'
+    name: 'App',
+    created() {
+        document.querySelector('html').style.fontSize = `${1 / window.devicePixelRatio}px`;
+    }
 }
 </script>
 <style>
@@ -14,7 +17,9 @@ export default {
 * {
     padding: 0;
     margin: 0;
-    font-size: 14px;
+}
+body * {
+    font-size: 14rem;
 }
 body, html {
     width: 100%;
