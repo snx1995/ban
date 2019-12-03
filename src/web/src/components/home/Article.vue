@@ -81,10 +81,10 @@ export default {
         .title-content {
             padding: 5vw;
             .title {
-                font-size: 40rem;
+                font-size: 8vw;
             }
             .subtitle {
-                font-size: 14rem;
+                font-size: 16px;
             }
         }
         p {
@@ -102,7 +102,10 @@ export default {
             padding: 2vw;
             h1 {
                 padding-bottom: 2vh;
-                font-size: 28rem;
+                font-size: 4vw;
+            }
+            p {
+                font-size: 3vw;
             }
         }
     }
@@ -169,7 +172,6 @@ export default {
                 background: #fff;
                 .title {
                     .borderBox();
-                    font-size: 40rem;
                 }
                 .subtitle {
                     color: @fontColorGrey;

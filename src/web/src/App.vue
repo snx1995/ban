@@ -7,7 +7,7 @@
 export default {
     name: 'App',
     created() {
-        document.querySelector('html').style.fontSize = `${1 / window.devicePixelRatio}px`;
+        // document.querySelector('html').style.fontSize = `${1 / window.devicePixelRatio}px`;
     }
 }
 </script>
@@ -17,9 +17,6 @@ export default {
 * {
     padding: 0;
     margin: 0;
-}
-body * {
-    font-size: 12rem;
 }
 body, html {
     width: 100%;
@@ -33,5 +30,7 @@ body, html {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    width: 100%;
+    height: 100%;
 }
 </style>
