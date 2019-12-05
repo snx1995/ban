@@ -1,13 +1,11 @@
 <template>
     <div class="test" v-bloading="loading">
-        <!--        <BTable :colsDef="colsDef" :data="data" footer>-->
-        <!--            <template v-slot:memo="row">-->
-        <!--                <span style="color: red">{{row.memo}}</span>-->
-        <!--            </template>-->
-        <!--        </BTable>-->
         <div class="center">
             <div style="width: 600px;">
                 <BUpload />
+            </div>
+            <div class="img-test">
+                <img v-for="(img, index) in imgs" :src="img" :key="index" :class="{active: activeImg == index}" @mouseenter="activeImg = index">
             </div>
         </div>
     </div>
@@ -53,7 +51,14 @@
                     {title: 't3', name: 'n3', memo: 'test3'},
                     {title: 't4', name: 'n4', memo: 'test4'}
                 ],
-                imgSrc: ''
+                imgSrc: '',
+                imgs: [
+                    "../../../static/imgs/1.jpg",
+                    "../../../static/imgs/2.jpg",
+                    "../../../static/imgs/3.jpg",
+                    "../../../static/imgs/4.jpg"
+                ],
+                activeImg: 0
             };
         },
         mounted() {
@@ -117,6 +122,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+    }
+    .img-test {
+        width: 100%;
+        height: 200px;
+        img {
+            width: 20%;
+            height: 100%;
+            transition: width .3s;
+            &.active {
+                width: 40%;
+            }
         }
     }
 </style>
