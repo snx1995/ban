@@ -62,6 +62,23 @@
             };
         },
         mounted() {
+            console.log('name', this.$store.state.TestModule.name)
+            console.log('count', this.$store.state.TestModule.count)
+            this.$store.commit('changeName', 'banyq');
+            this.$store.commit('incCount');
+            console.log('name', this.$store.state.TestModule.name)
+            console.log('count', this.$store.state.TestModule.count)
+            this.$store.dispatch('changeName', 'banyq');
+            this.$store.dispatch('incCount');
+            console.log('name', this.$store.state.TestModule.name)
+            console.log('count', this.$store.state.TestModule.count)
+            const delay = 500;
+            this.$store.dispatch('asyncChangeName', 'async banyq', delay);
+            console.log('name', this.$store.state.TestModule.name)
+            setTimeout(() => {
+                console.log('async', this.$store.state.TestModule.name)
+            }, delay)
+            console.log(this.$store.getters.hello)
         },
         methods: {
             handleNewMsg() {

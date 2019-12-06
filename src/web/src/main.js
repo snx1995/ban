@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import axios from 'axios';
 import utils from './utils';
+import store from './store';
 
 import VueDraggable from 'vuedraggable';
 import Ban from './components/ban'
@@ -23,6 +24,7 @@ initAxios();
 new Vue({
     el: '#app',
     router,
+    store,
     components: {App},
     template: '<App/>'
 });
