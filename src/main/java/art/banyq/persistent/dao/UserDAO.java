@@ -7,7 +7,9 @@ import art.banyq.common.entity.vo.user.UserVO;
 
 @Repository
 public interface UserDAO {
-    UserVO selectIdPassword(LoginParam param);
+    UserVO loginSelect(LoginParam param);
 
     int insertUser(RegisterParam param);
+
+    int updateToken(String token);
 }

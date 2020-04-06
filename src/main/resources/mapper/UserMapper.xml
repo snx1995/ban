@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="art.banyq.business.dao.UserDAO">
+<mapper namespace="art.banyq.persistent.dao.UserDAO">
     <resultMap id="UserVOMap" type="UserVO">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="auth_lv" property="authLv"/>
-        <result column="token_version" property="version" />
+        <result column="auth" property="auth"/>
+        <result column="lv" property="lv"/>
+        <result column="token" property="token" />
     </resultMap>
 
-    <select id="selectIdPassword" parameterType="LoginParam" resultMap="UserVOMap">
+    <select id="loginSelect" parameterType="LoginParam" resultMap="UserVOMap">
         select * from user where (id = #{account} or name = #{account}) and password = #{password}
     </select>
 
@@ -18,4 +19,8 @@
         insert into user (name, password) values
         (#{name}, #{password})
     </insert>
+
+    <update id="updateToken" parameterType="userVO">
+        update user set token=#{token} where id=#{id}
+    </update>
 </mapper>

@@ -30,8 +30,8 @@ public class AuthController {
     @PostMapping("/login")
     public UserVO login(@RequestBody LoginParam param, HttpServletResponse response) {
         if ("exception".equals(param.getAccount())) throw new ReqHandleException(ResStatus.AUTH_FAILED);
-        UserVO user = userDAO.selectIdPassword(param);
-        response.setHeader("Set-Token", tokenService.encode(user.getId(), user.getAuthLv(), user.getVersion()).toString());
+        UserVO user = userDAO.loginSelect(param);
+        response.setHeader("Set-Token", tokenService.encode(user.getId(), user.getAuth(), '0').toString());
         return user;
     }
 

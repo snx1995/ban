@@ -6,15 +6,15 @@ public class UserVO {
     private String id;
     private String name;
     private String token;
-    private Integer version;
-    private AuthorityLevel authLv;
+    private Integer lv;
+    private AuthorityLevel auth;
 
-    public AuthorityLevel getAuthLv() {
-        return authLv;
+    public AuthorityLevel getAuth() {
+        return auth;
     }
 
-    public void setAuthLv(AuthorityLevel authLv) {
-        this.authLv = authLv;
+    public void setAuth(AuthorityLevel auth) {
+        this.auth = auth;
     }
 
     public String getId() {
@@ -41,11 +41,11 @@ public class UserVO {
         this.token = token;
     }
 
-    public Integer getVersion() {
-        return version;
+    public Integer getLv() {
+        return lv;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setLv(Integer lv) {
+        this.lv = lv;
     }
 }
