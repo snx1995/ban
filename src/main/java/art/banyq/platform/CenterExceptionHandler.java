@@ -4,7 +4,8 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
-import art.banyq.common.ReqErrorResult;
+
+import art.banyq.common.ReqResult;
 import art.banyq.common.exception.ReqHandleException;
 
 @RestController
@@ -16,17 +17,17 @@ public class CenterExceptionHandler {
 //    }
 
     @ExceptionHandler(Exception.class)
-    public ReqErrorResult handleException(Exception ex) {
-        return new ReqErrorResult(ex.getMessage());
+    public ReqResult handleException(Exception ex) {
+        return ReqResult.error(ex.getMessage());
     }
 
     @ExceptionHandler(DuplicateKeyException.class)
-    public ReqErrorResult handleDuplicateKeyException(DuplicateKeyException ex) {
-        return new ReqErrorResult("sd");
+    public ReqResult handleDuplicateKeyException(DuplicateKeyException ex) {
+        return ReqResult.error(ex.getMessage());
     }
 
     @ExceptionHandler(ReqHandleException.class)
-    public ReqErrorResult handleAuthorizationException(ReqHandleException ex) {
-        return new ReqErrorResult(ex);
+    public ReqResult handleReqHandleException(ReqHandleException ex) {
+        return ReqResult.failed(ex.getData());
     }
 }

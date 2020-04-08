@@ -1,15 +1,16 @@
 package art.banyq.common;
 
 public enum ResStatus {
-    FAILED(-1, "server error"),
+    FAILED(-1, "failed"),
     SUCCEEDED(0, "success"),
     AUTH_FAILED(1, "auth failed"),
     INVALID_PARAM(2, "invalid param"),
-    NOT_FOUND(3, "data not found")
+    NOT_FOUND(3, "data not found"),
+    ERROR(4, "server error")
     ;
 
-    private int code;
-    private String msg;
+    public int code;
+    public String msg;
 
     private ResStatus(int code, String defaultMsg) {
         this.code = code;

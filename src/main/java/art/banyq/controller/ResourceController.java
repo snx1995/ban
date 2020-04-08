@@ -1,8 +1,5 @@
 package art.banyq.controller;
 
-import art.banyq.common.AuthorityLevel;
-import art.banyq.common.ResStatus;
-import art.banyq.common.annotation.AuthLV;
 import art.banyq.common.entity.po.ResourcePO;
 import art.banyq.common.exception.ReqHandleException;
 import art.banyq.persistent.dao.ResourceDAO;
@@ -39,7 +36,7 @@ public class ResourceController {
             dir.mkdirs();
             String filename = file.getOriginalFilename();
             if (filename != null) filename = filename.replaceAll(".*(\\.\\w*)", Long.toHexString(System.currentTimeMillis()) + "$1");
-            else throw new ReqHandleException(ResStatus.INVALID_PARAM, "filename is invalid");
+            else throw new ReqHandleException("filename is invalid");
             File localFile = new File(dir.getAbsolutePath(), filename);
             resource.setName(file.getOriginalFilename());
             resource.setPath(localFile.getAbsolutePath());

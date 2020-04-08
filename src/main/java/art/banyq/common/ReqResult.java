@@ -1,22 +1,32 @@
 package art.banyq.common;
 
 public class ReqResult {
-    private int code;
+    private Integer code;
     private String msg;
     private Object data;
 
-    public ReqResult succeeded(Object data) {
-        this.code = ResStatus.SUCCEEDED.getCode();
-        this.msg = ResStatus.SUCCEEDED.getMsg();
+    private ReqResult(Integer code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
         this.data = data;
-        return this;
     }
 
-    public ReqResult failed(Object data) {
-        this.code = ResStatus.FAILED.getCode();
-        this.msg = ResStatus.FAILED.getMsg();
+    private ReqResult(ResStatus status, Object data) {
+        this.code = status.code;
+        this.msg = status.msg;
         this.data = data;
-        return this;
+    }
+
+    public static ReqResult succeeded(Object data) {
+        return new ReqResult(ResStatus.SUCCEEDED, data);
+    }
+
+    public static ReqResult failed(Object data) {
+        return new ReqResult(ResStatus.FAILED, data);
+    }
+
+    public static ReqResult error(Object data) {
+        return new ReqResult(ResStatus.ERROR, data);
     }
 
     /**
