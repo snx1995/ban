@@ -18,6 +18,7 @@ public class CenterExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ReqResult handleException(Exception ex) {
+        ex.printStackTrace();
         return ReqResult.error(ex.getMessage());
     }
 
