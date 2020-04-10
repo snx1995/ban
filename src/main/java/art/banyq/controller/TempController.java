@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import art.banyq.common.ReqResult;
 import art.banyq.common.data.PageData;
 import art.banyq.common.exception.ReqHandleException;
 
@@ -18,13 +19,14 @@ import art.banyq.common.exception.ReqHandleException;
 public class TempController {
     
     @GetMapping("/getList")
-    public PageData getList(Integer page, Integer size) {
+    public ReqResult getList(Integer page, Integer size) {
         if (page == null || size == null) throw new ReqHandleException("page || size不能为空");
+        if (page < 1) throw new ReqHandleException("page 必须大于1");
         List<TempData> result = new ArrayList<>(10);
         for (int i = 0;i < size;i ++) {
-            result.add(new TempData("商品" + i));
+            result.add(new TempData("商品" + ((page - 1) * size + i)));
         }
-        return new PageData(size * 2, page, size, result);
+        return ReqResult.succeeded(new PageData(size * 2, page, size, result));
     }
 }
 
