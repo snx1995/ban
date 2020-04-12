@@ -1,5 +1,8 @@
 package art.banyq;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -25,8 +28,22 @@ public class BanConfig implements WebMvcConfigurer {
         registry.addInterceptor(this.authorityInterceptor);
     }
 
+    // @Override
+    // public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+    //     converters.add(this.mappingJackson2HttpMessageConverter());
+    // }
+
     @Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
+
+    // @Bean
+    // public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+    //     MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+    //     List<MediaType> supportedMediaTypes = new ArrayList<>();
+    //     supportedMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+    //     converter.setSupportedMediaTypes(supportedMediaTypes);
+    //     return converter;
+    // }
 }

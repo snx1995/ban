@@ -9,7 +9,7 @@ import art.banyq.common.entity.param.dao.MsgDaoParam;
 
 @Repository
 public interface MsgDao {
-    Integer insert(Msg msg);
+    Integer insertOne(Msg msg);
 
     List<Msg> selectList(MsgDaoParam param);
 }

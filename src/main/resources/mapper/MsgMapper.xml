@@ -6,4 +6,9 @@
     <select id="selectList" parameterType="msgDaoParam" resultType="Msg">
         select * from message limit #{start}, #{size}
     </select>
+
+    <insert id="insertOne" parameterType="Msg" useGeneratedKeys="true" keyProperty="id">
+        insert into message (content, userId) values
+        (#{content}, #{userId})
+    </insert>
 </mapper>
