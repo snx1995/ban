@@ -13,4 +13,4 @@ logging.level.art.banyq.business.dao=debug
 
 #system.properties
 token.password=xxxxxxxxx
-file.dir=/path/to/dir
+resource.root=/static

@@ -1,7 +1,7 @@
 package art.banyq.common.entity.message.file;
 
 public enum MsgFileType {
-    FILE(0), PHOTO(1), VIDEO(2), AUDIO(3);
+    FILE(0), IMAGE(1), VIDEO(2), AUDIO(3);
 
     private Integer type;
 
@@ -18,7 +18,7 @@ public enum MsgFileType {
             case 0:
                 return FILE;
             case 1:
-                return PHOTO;
+                return IMAGE;
             case 2:
                 return VIDEO;
             case 3:

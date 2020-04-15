@@ -11,4 +11,9 @@
         insert into www_resource (name, path, upload_user, upload_date) values
         (#{name}, #{path}, #{upload_user}, NOW())
     </insert>
+
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="id" parameterType="ResFile">
+        insert into file (original, compressed, filename, type, link_id) values
+        (#{original}, #{compressed}, #{filename}, #{type}, #{linkId})
+    </insert>
 </mapper>
