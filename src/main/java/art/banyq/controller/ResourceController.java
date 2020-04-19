@@ -5,7 +5,9 @@ import art.banyq.common.entity.message.file.MsgFileType;
 import art.banyq.common.entity.po.ResourcePO;
 import art.banyq.common.entity.resource.ResFile;
 import art.banyq.common.exception.ReqHandleException;
+import art.banyq.common.util.FileUtil;
 import art.banyq.persistent.dao.ResourceDAO;
+import art.banyq.platform.config.SysConfig;
 import net.coobird.thumbnailator.Thumbnails;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -30,13 +32,16 @@ import java.util.List;
 public class ResourceController {
     private static final double IMG_COMPRESS_SCALE = 0.3;
 
-    @Value("${resource.root}")
-    private String resRootPath;
+    private File rootDir;
 
     private ResourceDAO resourceDAO;
 
-    public ResourceController(ResourceDAO resourceDAO) {
+    public ResourceController(ResourceDAO resourceDAO, SysConfig sysConfig) {
         this.resourceDAO = resourceDAO;
+        rootDir = new File(sysConfig.getResourceRoot());
+        if (!rootDir.exists()) {
+            rootDir.mkdirs();
+        }
     }
 
     @PostMapping("/upload111")
@@ -69,44 +74,43 @@ public class ResourceController {
     @Transactional
     @PostMapping("/upload")
     public ReqResult upload(MultipartFile file, Integer linkId, MsgFileType type) {
-        File rootDir = new File(resRootPath);
-        if (!rootDir.exists()) {
-            rootDir.mkdirs();
-        }
-        String originalFilePath = resRootPath + '/' + file.getOriginalFilename();
+        String storeName = FileUtil.toUniqueFilename(file.getOriginalFilename());
+
+        String originalFilePath = storeName;
         ResFile f = new ResFile();
         f.setLinkId(linkId);
         f.setType(type);
+        f.setFilename(file.getOriginalFilename());
+        f.setOriginal(originalFilePath);
         if (type == MsgFileType.IMAGE) {
             try {
-                String compressedFilePath = compressImage(file);
+                String compressedFilePath = "compressed_" + storeName;
+                compressImage(file, compressedFilePath);
                 f.setCompressed(compressedFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new ReqHandleException("文件压缩失败:" + e.getMessage());
+                throw new ReqHandleException("图片压缩失败:" + e.getMessage());
             }
         }
         try {
-            file.transferTo(new File(originalFilePath));
+            file.transferTo(new File(rootDir, originalFilePath));
         } catch (Exception e) {
             e.printStackTrace();
             throw new ReqHandleException("保存原始文件失败:" + e.getMessage());
         }
-        f.setOriginal(originalFilePath);
 
         Integer result = resourceDAO.insertOne(f);
         if (result != 1) throw new ReqHandleException("数据库写入失败");
         return ReqResult.succeeded(f);
     }
 
-    private String compressImage(MultipartFile file, double scale) throws IOException {
-        String path = resRootPath + "/" + "compressed_" + file.getOriginalFilename();
+    private void compressImage(MultipartFile file, double scale, String compressedFilePath) throws IOException {
+        File compressedFile = new File(rootDir, compressedFilePath);
         InputStream inputStream = file.getInputStream();
-        Thumbnails.of(inputStream).scale(scale).toFile(path);
-        return path;
+        Thumbnails.of(inputStream).scale(scale).toFile(compressedFile.getAbsolutePath());
     }
 
-    private String compressImage(MultipartFile file) throws IOException {
-        return compressImage(file, IMG_COMPRESS_SCALE);
+    private void compressImage(MultipartFile file, String compressedFilePath) throws IOException {
+        this.compressImage(file, IMG_COMPRESS_SCALE, compressedFilePath);
     }
 }

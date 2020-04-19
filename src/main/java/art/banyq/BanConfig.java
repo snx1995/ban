@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+import art.banyq.platform.config.SysConfig;
 import art.banyq.platform.interceptor.AuthorityInterceptor;
 import art.banyq.platform.interceptor.ReqInterceptor;
 
@@ -28,22 +30,8 @@ public class BanConfig implements WebMvcConfigurer {
         registry.addInterceptor(this.authorityInterceptor);
     }
 
-    // @Override
-    // public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-    //     converters.add(this.mappingJackson2HttpMessageConverter());
-    // }
-
     @Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
-
-    // @Bean
-    // public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-    //     MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-    //     List<MediaType> supportedMediaTypes = new ArrayList<>();
-    //     supportedMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-    //     converter.setSupportedMediaTypes(supportedMediaTypes);
-    //     return converter;
-    // }
 }
