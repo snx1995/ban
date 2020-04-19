@@ -10,7 +10,6 @@ import art.banyq.persistent.dao.ResourceDAO;
 import art.banyq.platform.config.SysConfig;
 import net.coobird.thumbnailator.Thumbnails;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,63 +44,41 @@ public class ResourceController {
         }
     }
 
-    @PostMapping("/upload111")
-    // @AuthLV(AuthorityLevel.ADMIN)
-    public List<ResourcePO> upload111(MultipartFile[] files) {
-        List<ResourcePO> result = new ArrayList<>(files.length);
-        for (MultipartFile file : files) {
-            ResourcePO resource = new ResourcePO();
-            File dir = new File("resource_files");
-            dir.mkdirs();
-            String filename = file.getOriginalFilename();
-            if (filename != null) filename = filename.replaceAll(".*(\\.\\w*)", Long.toHexString(System.currentTimeMillis()) + "$1");
-            else throw new ReqHandleException("filename is invalid");
-            File localFile = new File(dir.getAbsolutePath(), filename);
-            resource.setName(file.getOriginalFilename());
-            resource.setPath(localFile.getAbsolutePath());
-            resource.setUpload_user(1);
-            result.add(resource);
-            // assert resourceDAO.insert(resource) == 1 : "database insert failed!";
-            resourceDAO.insert(resource);
-            try {
-                file.transferTo(localFile);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return result;
-    }
-
     @Transactional
     @PostMapping("/upload")
     public ReqResult upload(MultipartFile file, Integer linkId, MsgFileType type) {
         String storeName = FileUtil.toUniqueFilename(file.getOriginalFilename());
-
         String originalFilePath = storeName;
+        String compressedFilePath = "compressed_" + storeName;
+
         ResFile f = new ResFile();
         f.setLinkId(linkId);
         f.setType(type);
         f.setFilename(file.getOriginalFilename());
         f.setOriginal(originalFilePath);
-        if (type == MsgFileType.IMAGE) {
-            try {
-                String compressedFilePath = "compressed_" + storeName;
-                compressImage(file, compressedFilePath);
-                f.setCompressed(compressedFilePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new ReqHandleException("图片压缩失败:" + e.getMessage());
-            }
-        }
+        f.setCompressed(compressedFilePath);
+        
         try {
-            file.transferTo(new File(rootDir, originalFilePath));
+            File originalFile = new File(rootDir, originalFilePath);
+            if (!originalFile.exists()) originalFile.mkdirs();
+            file.transferTo(originalFile);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ReqHandleException("保存原始文件失败:" + e.getMessage());
         }
 
+        if (type == MsgFileType.IMAGE) {
+            try {
+                compressImage(file, compressedFilePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new ReqHandleException("图片压缩失败:" + e.getMessage());
+            }
+        }
+
         Integer result = resourceDAO.insertOne(f);
         if (result != 1) throw new ReqHandleException("数据库写入失败");
+
         return ReqResult.succeeded(f);
     }
 

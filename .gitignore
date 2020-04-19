@@ -10,3 +10,4 @@ target
 ._*
 **/node_modules
 resource_files
+.factorypath
